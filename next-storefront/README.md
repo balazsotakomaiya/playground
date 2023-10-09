@@ -1,5 +1,7 @@
 # Next Storefront
 
+A simple storefront built with Next.js and GraphQL. Acts as an ongoing learning project for myself.
+
 ## Running the project
 
 ```shell
