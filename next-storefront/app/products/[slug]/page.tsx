@@ -15,7 +15,9 @@ interface Props {
 export async function generateMetadata(
     { params }: Props
 ): Promise<Metadata> {
-    const product = await getProduct(params.slug)
+    const product = await getProduct({
+        slug: params.slug
+    })
 
     return {
         title: `${product.name} – Storefront`,
@@ -25,7 +27,9 @@ export async function generateMetadata(
 
 
 const Product: React.FC<Props> = async ({params}) => {
-    const product = await getProduct(params.slug)
+    const product = await getProduct({
+        slug: params.slug
+    })
     const isProductPriceRange = product.pricing.priceRange.start.gross.amount !== product.pricing.priceRange.stop.gross.amount
     const priceWithCurrency = `£${product.pricing.priceRange.start.gross.amount}`
 
