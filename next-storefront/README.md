@@ -31,4 +31,5 @@ pnpm start
 - Render the product description as HTML
 - Enlarge product image on hover / click
 - Gallery for product images
+- Add navigation (primary and secondary, as in breadcrumbs etc...)
 
