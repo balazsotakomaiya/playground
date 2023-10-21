@@ -1,0 +1,24 @@
+{
+  "name": "stock-manager",
+  "version": "1.0.0",
+  "description": "A simple stock management system",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts stock.txt",
+    "test": "jest --silent",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "author": "Balazs",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.6",
+    "@types/node": "^17.0.45",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1"
+  }
+}
