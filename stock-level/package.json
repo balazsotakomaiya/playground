@@ -4,7 +4,7 @@
   "description": "A simple stock management system",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node index.ts stock.txt",
+    "start": "ts-node ./src/index.ts stock.txt",
     "test": "jest --silent",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
