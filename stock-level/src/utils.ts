@@ -4,7 +4,11 @@ export const parseLine = (line: string): Command | null => {
     const trimmedLine = line.trim();
     if (!trimmedLine) return null;
 
-    const [command, ...args] = trimmedLine.split(' ');
+    // Split by one or more spaces
+    const parts = trimmedLine.split(/\s+/);
+    if (parts.length === 0) return null;
+
+    const [command, ...args] = parts;
     return { command, args };
 };
 

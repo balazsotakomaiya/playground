@@ -39,4 +39,12 @@ describe('processOrder', () => {
         expect(newStockLevels['AB-123']).toBe(45);
         expect(newStockLevels['CD-456']).toBe(65);
     });
+
+    it('does not reduce stock below zero and warns', () => {
+        const orderItems = [{ sku: 'AB-123', amount: 60 }]; // trying to order more than in stock
+        const newStockLevels = processOrder(orderItems, stockLevels);
+
+        expect(newStockLevels['AB-123']).toBe(50); // stock level should remain unchanged
+        expect(consoleWarnSpy).toHaveBeenCalledWith('Insufficient stock for SKU: AB-123. Operation skipped.');
+    });
 });
