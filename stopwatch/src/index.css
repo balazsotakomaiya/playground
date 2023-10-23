@@ -20,3 +20,14 @@
     --danger-color: #913931;
     --danger-color-secondary: #320C0C;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}

@@ -23,12 +23,11 @@ const Laps: React.FC<Props> = ({ laps }) => {
 const LapContainer = styled.div`
     background-color: black;
     color: white;
-    padding: 10px;
 `;
 
 const LapItem = styled.div`
-    border-bottom: 1px solid red;
-    padding: 5px 0;
+    border-bottom: 1px solid var(--primary-color);
+    padding: 8px 0;
 `;
 
 const LapNumber = styled.span`

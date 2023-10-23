@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useReducer } from "react";
-import { formatTime } from "./utils.ts";
 import stopwatchReducer, { initialState } from "./reducer";
 import { DigitalTime } from "./components/DigitalTime";
 import { Laps } from "./components/Laps";
@@ -57,7 +56,7 @@ function App() {
   }, [state.isRunning]);
 
   return (
-    <div>
+    <Wrapper>
       <TimeAndControls>
         <DigitalTime elapsedTime={state.elapsedTime} />
         <Controls>
@@ -86,16 +85,26 @@ function App() {
       </TimeAndControls>
 
       <Laps laps={reversedLaps} />
-    </div>
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 20px;
+`
+
 const TimeAndControls = styled.div`
   height: 400px;
+  border-bottom: 1px solid var(--primary-color);
 `;
 
 const Controls = styled.div`
   display: flex;
+  justify-content: space-between;
 `
 
 export default App;
