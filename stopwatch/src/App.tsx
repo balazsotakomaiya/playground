@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useReducer } from 'react'
+import { useEffect, useMemo, useReducer } from "react";
 import { formatTime } from "./utils.ts";
 import stopwatchReducer, { initialState } from "./reducer";
 import { DigitalTime } from "./components/DigitalTime";
 import { Laps } from "./components/Laps";
+import styled from "styled-components";
+import { RoundButton } from "./components/RoundButton";
 
-const UPDATE_INTERVAL = 10 // The stopwatch UI update interval in milliseconds
+const UPDATE_INTERVAL = 10; // The stopwatch UI update interval in milliseconds
 
 function App() {
-  const [state, dispatch] = useReducer(stopwatchReducer, initialState)
+  const [state, dispatch] = useReducer(stopwatchReducer, initialState);
 
   const worstLapTime = useMemo(() => {
     return state.laps.length > 0 ? Math.max(...state.laps) : null;
@@ -17,22 +19,22 @@ function App() {
     return state.laps.length > 0 ? Math.min(...state.laps) : null;
   }, [state.laps]);
 
-  const reversedLaps = [...state.laps].reverse() // Do not mutate React state directly
+  const reversedLaps = [...state.laps].reverse(); // Do not mutate React state directly
 
   const startStopwatch = () => {
-    dispatch({ type: 'START_STOPWATCH' });
+    dispatch({ type: "START_STOPWATCH" });
   };
 
   const stopStopwatch = () => {
-    dispatch({ type: 'STOP_STOPWATCH' });
+    dispatch({ type: "STOP_STOPWATCH" });
   };
 
   const resetStopwatch = () => {
-    dispatch({ type: 'RESET_STOPWATCH' });
+    dispatch({ type: "RESET_STOPWATCH" });
   };
 
   const recordLap = () => {
-    dispatch({ type: 'RECORD_LAP' });
+    dispatch({ type: "RECORD_LAP" });
   };
 
   useEffect(() => {
@@ -41,7 +43,7 @@ function App() {
     if (state.isRunning) {
       interval = window.setInterval(() => {
         dispatch({
-          type: 'INCREMENT_ELAPSED_TIME',
+          type: "INCREMENT_ELAPSED_TIME",
           interval: UPDATE_INTERVAL,
         });
       }, UPDATE_INTERVAL); // updating the time every 10 milliseconds
@@ -55,33 +57,45 @@ function App() {
   }, [state.isRunning]);
 
   return (
-      <div>
+    <div>
+      <TimeAndControls>
         <DigitalTime elapsedTime={state.elapsedTime} />
-        <button onClick={startStopwatch} disabled={state.isRunning}>
-          Start
-        </button>
-        <button onClick={stopStopwatch} disabled={!state.isRunning}>
-          Stop
-        </button>
-        <button onClick={resetStopwatch} disabled={state.isRunning}>
-          Reset
-        </button>
-        <button onClick={recordLap} disabled={!state.isRunning}>
-          Lap
-        </button>
-        <h2>Laps</h2>
-        <Laps />
+        <Controls>
+          { state.isRunning ? (
+              <RoundButton onClick={recordLap}>
+                Lap
+              </RoundButton>
+          ) : (
+              <RoundButton onClick={resetStopwatch}>
+                Reset
+              </RoundButton>
+          )}
 
-        {reversedLaps.map((lap, index) => (
-            <li
-                key={`lap-${index}`}
-            >
-              <span className="lap-number">Lap {state.laps.length - index}</span>
-              <span className="lap-time"> {formatTime(lap)}</span>
-            </li>
-        ))}
-      </div>
-  )
+          {/*todo: slider controls*/}
+
+          { state.isRunning ? (
+              <RoundButton onClick={stopStopwatch}>
+                Stop
+              </RoundButton>
+          ) : (
+              <RoundButton onClick={startStopwatch}>
+                Start
+              </RoundButton>
+          )}
+        </Controls>
+      </TimeAndControls>
+
+      <Laps laps={reversedLaps} />
+    </div>
+  );
 }
 
-export default App
+const TimeAndControls = styled.div`
+  height: 400px;
+`;
+
+const Controls = styled.div`
+  display: flex;
+`
+
+export default App;

@@ -1,18 +1,19 @@
 import styled from 'styled-components';
+import React from "react";
+import { formatTime } from "../../utils.ts";
+import { LapDuration } from "../../types.ts";
 
-const Laps = () => {
-    const laps = [
-        { number: 3, time: "18:09.75" },
-        { number: 2, time: "00:09.82" },
-        { number: 1, time: "00:01.31" },
-    ];
+interface Props {
+    laps: LapDuration[]
+}
 
+const Laps: React.FC<Props> = ({ laps }) => {
     return (
         <LapContainer>
-            {laps.map(lap => (
-                <LapItem key={lap.number}>
-                    <LapNumber>Lap {lap.number}</LapNumber>
-                    <LapTime>{lap.time}</LapTime>
+            {laps.map((lap, index) => (
+                <LapItem key={`lap-${index}`}>
+                    <LapNumber className="lap-number">Lap {laps.length - index}</LapNumber>
+                    <LapTime className="lap-time"> {formatTime(lap)}</LapTime>
                 </LapItem>
             ))}
         </LapContainer>
@@ -22,7 +23,6 @@ const Laps = () => {
 const LapContainer = styled.div`
     background-color: black;
     color: white;
-    font-family: Arial, sans-serif;
     padding: 10px;
 `;
 
