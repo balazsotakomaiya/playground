@@ -32,6 +32,11 @@ const reducer = (state: StopwatchState, action: StopwatchAction): StopwatchState
         switch (action.type) {
             case 'START_STOPWATCH':
                 draftState.isRunning = true;
+
+                // Create a new lap, if laps are empty
+                if (draftState.laps.length === 0) {
+                    draftState.laps.push(0);
+                }
                 break;
             case 'STOP_STOPWATCH':
                 draftState.isRunning = false;
@@ -40,12 +45,9 @@ const reducer = (state: StopwatchState, action: StopwatchAction): StopwatchState
                 if (state.isRunning) {
                     draftState.elapsedTime = state.elapsedTime + action.interval;
 
-
                     // Update the duration of the current lap
-                    if (draftState.laps.length > 0) {
-                        const previousLapsDuration = sumNumbers(draftState.laps.slice(0, -1));
-                        draftState.laps[draftState.laps.length - 1] = draftState.elapsedTime - previousLapsDuration;
-                    }
+                    const previousLapsDuration = sumNumbers(draftState.laps.slice(0, -1));
+                    draftState.laps[draftState.laps.length - 1] = draftState.elapsedTime - previousLapsDuration;
                 }
                 break;
             case 'RESET_STOPWATCH':

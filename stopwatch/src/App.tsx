@@ -20,6 +20,9 @@ function App() {
 
   const reversedLaps = [...state.laps].reverse(); // Do not mutate React state directly
 
+  const canReset = state.elapsedTime > 0 && !state.isRunning;
+  const canLap = state.elapsedTime > 0;
+
   const startStopwatch = () => {
     dispatch({ type: "START_STOPWATCH" });
   };
@@ -60,13 +63,13 @@ function App() {
       <TimeAndControls>
         <DigitalTime elapsedTime={state.elapsedTime} />
         <Controls>
-          { state.isRunning ? (
-              <RoundButton onClick={recordLap}>
-                Lap
-              </RoundButton>
-          ) : (
+          {canReset ? (
               <RoundButton onClick={resetStopwatch}>
                 Reset
+              </RoundButton>
+          ) : (
+              <RoundButton onClick={recordLap} disabled={!canLap}>
+                Lap
               </RoundButton>
           )}
 
