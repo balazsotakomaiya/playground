@@ -33,7 +33,6 @@ const StyledRoundButton = styled.button<{
   font-size: 1rem;
   outline: none;
   opacity: ${props => props.disabled ? 0.8 : 1};
-
   background: ${props => {
     switch (props.variant) {
       case 'primary':
@@ -54,6 +53,19 @@ const StyledRoundButton = styled.button<{
         return 'rgba(var(--color-green))';
     }
   }};
+
+  &:active {
+    background: ${props => {
+      switch (props.variant) {
+        case 'primary':
+          return 'rgba(var(--color-gray), 0.8)';
+        case 'danger':
+          return 'rgba(var(--color-red), 0.1)';
+        case 'success':
+          return 'rgba(var(--color-green), 0.1)';
+      }
+    }};
+  }
 `
 
 export default RoundButton

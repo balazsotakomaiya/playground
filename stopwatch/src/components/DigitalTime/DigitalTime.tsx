@@ -16,7 +16,7 @@ const DigitalTime: React.FC<Props> = ({ elapsedTime }) => {
 }
 
 const Wrapper = styled.div`
-  font-size: 4.5rem;
+  font-size: 5rem;
   font-weight: 300;
   width: 100%;
   flex: 1;

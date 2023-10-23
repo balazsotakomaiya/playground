@@ -64,31 +64,23 @@ function App() {
         <DigitalTime elapsedTime={state.elapsedTime} />
         <Controls>
           {canReset ? (
-              <RoundButton onClick={resetStopwatch}>
-                Reset
-              </RoundButton>
+            <RoundButton onClick={resetStopwatch}>Reset</RoundButton>
           ) : (
-              <RoundButton onClick={recordLap} disabled={!canLap}>
-                Lap
-              </RoundButton>
+            <RoundButton onClick={recordLap} disabled={!canLap}>
+              Lap
+            </RoundButton>
           )}
 
           {/*todo: slider controls*/}
 
-          { state.isRunning ? (
-              <RoundButton
-                  variant='danger'
-                  onClick={stopStopwatch}
-              >
-                Stop
-              </RoundButton>
+          {state.isRunning ? (
+            <RoundButton variant="danger" onClick={stopStopwatch}>
+              Stop
+            </RoundButton>
           ) : (
-              <RoundButton
-                  variant='success'
-                  onClick={startStopwatch}
-              >
-                Start
-              </RoundButton>
+            <RoundButton variant="success" onClick={startStopwatch}>
+              Start
+            </RoundButton>
           )}
         </Controls>
       </TimeAndControls>
@@ -99,12 +91,8 @@ function App() {
 }
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  max-width: 100vw;
-  max-height: 100vh;
   padding: 20px;
-`
+`;
 
 const TimeAndControls = styled.div`
   height: 450px;
@@ -117,6 +105,6 @@ const TimeAndControls = styled.div`
 const Controls = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
 
 export default App;
