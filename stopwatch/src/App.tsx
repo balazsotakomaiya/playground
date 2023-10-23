@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useReducer } from 'react'
 import { produce } from "immer";
-
-type Lap = number; // The "length" of the lap, in milliseconds
+import { sumNumbers } from "./utils.ts";
+import { ElapsedTime, Lap } from "./types.ts";
 
 type StopwatchState = {
   isRunning: boolean;
-  elapsedTime: number; // Elapsed time in milliseconds
+  elapsedTime: ElapsedTime;
   laps: Lap[];
 };
 
@@ -17,16 +17,12 @@ type StopwatchAction =
     | { type: 'INCREMENT_ELAPSED_TIME', interval: number }
     ;
 
-
 // Initial state
 const initialState: StopwatchState = {
   isRunning: false,
   elapsedTime: 0,
   laps: [],
 };
-
-const sum: (array: number[]) => number = array =>
-    array.reduce((a, b) => a + b, 0);
 
 const UPDATE_INTERVAL = 10 // The stopwatch UI update interval in milliseconds
 
@@ -53,7 +49,7 @@ function stopwatchReducer(state: StopwatchState, action: StopwatchAction): Stopw
         if (state.isRunning) {
           // Calculate the duration of the current lap. The duration is the difference between
           // the total elapsed time so far and the sum of the durations of all previous laps.
-          const lapDuration = state.elapsedTime - sum(state.laps)
+          const lapDuration = state.elapsedTime - sumNumbers(state.laps)
 
           // Record the new lap
           draftState.laps.push(lapDuration);
@@ -62,14 +58,6 @@ function stopwatchReducer(state: StopwatchState, action: StopwatchAction): Stopw
     }
   });
 }
-
-const formatTime = (time: number) => {
-  const date = new Date(time);
-  const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-  const seconds = date.getUTCSeconds().toString().padStart(2, '0');
-  const milliseconds = date.getUTCMilliseconds().toString().padStart(3, '0');
-  return `${minutes}:${seconds}.${milliseconds}`;
-};
 
 function App() {
   const [state, dispatch] = useReducer(stopwatchReducer, initialState)
