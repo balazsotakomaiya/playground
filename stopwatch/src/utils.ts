@@ -7,7 +7,7 @@ export const sumNumbers: (array: number[]) => number = (array) =>
   array.reduce((a, b) => a + b, 0);
 
 /**
- * Format a time in milliseconds as a string in the format "mm:ss.sss".
+ * Format a time in milliseconds as a string in the format "mm:ss.ss".
  *
  * @param time
  */

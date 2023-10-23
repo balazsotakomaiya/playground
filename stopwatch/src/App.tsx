@@ -76,11 +76,17 @@ function App() {
           {/*todo: slider controls*/}
 
           { state.isRunning ? (
-              <RoundButton onClick={stopStopwatch}>
+              <RoundButton
+                  variant='danger'
+                  onClick={stopStopwatch}
+              >
                 Stop
               </RoundButton>
           ) : (
-              <RoundButton onClick={startStopwatch}>
+              <RoundButton
+                  variant='success'
+                  onClick={startStopwatch}
+              >
                 Start
               </RoundButton>
           )}
@@ -101,8 +107,8 @@ const Wrapper = styled.div`
 `
 
 const TimeAndControls = styled.div`
-  height: 400px;
-  border-bottom: 1px solid var(--primary-color);
+  height: 450px;
+  border-bottom: 1px solid rgba(var(--color-gray));
   display: flex;
   flex-direction: column;
   padding-bottom: 16px;

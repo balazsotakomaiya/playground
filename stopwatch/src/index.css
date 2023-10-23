@@ -13,12 +13,11 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 
-    --primary-color: #333333;
-    /*todo*/
-    --success-color: #2E7D32;
-    --success-color-secondary: #1B5E20;
-    --danger-color: #913931;
-    --danger-color-secondary: #320C0C;
+    --color-gray: 51, 51, 51;
+    --color-black: 10, 10, 10;
+    --color-white: 255, 255, 255;
+    --color-green: 68, 255, 68;
+    --color-red: 255, 68, 68;
 }
 
 * {

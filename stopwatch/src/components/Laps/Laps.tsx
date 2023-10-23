@@ -20,13 +20,15 @@ const Laps: React.FC<Props> = ({ laps }) => {
     );
 }
 
+// todo: overflow-y: scroll
+
 const LapContainer = styled.div`
     background-color: black;
     color: white;
 `;
 
 const LapItem = styled.div`
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 1px solid rgb(var(--color-gray));
     padding: 8px 0;
 `;
 

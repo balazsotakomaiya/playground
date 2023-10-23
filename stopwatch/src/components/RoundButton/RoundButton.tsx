@@ -8,7 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 
 const RoundButton: React.FC<Props> = (props) => {
     const {
-        variant,
+        variant = 'primary',
         disabled,
         ...rest
     } = props
@@ -31,9 +31,29 @@ const StyledRoundButton = styled.button<{
   border-radius: 50%;
   border: none;
   font-size: 1rem;
-  background: var(--primary-color);
   outline: none;
   opacity: ${props => props.disabled ? 0.8 : 1};
+
+  background: ${props => {
+    switch (props.variant) {
+      case 'primary':
+        return 'rgba(var(--color-gray))';
+      case 'danger':
+        return 'rgba(var(--color-red), 0.2)';
+      case 'success':
+        return 'rgba(var(--color-green), 0.2)';
+    }
+  }};
+  color: ${props => {
+    switch (props.variant) {
+      case 'primary':
+        return 'white';
+      case 'danger':
+        return 'rgba(var(--color-red))';
+      case 'success':
+        return 'rgba(var(--color-green))';
+    }
+  }};
 `
 
 export default RoundButton
