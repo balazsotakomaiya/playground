@@ -1,63 +1,10 @@
 import { useEffect, useMemo, useReducer } from 'react'
-import { produce } from "immer";
-import { sumNumbers } from "./utils.ts";
-import { ElapsedTime, Lap } from "./types.ts";
-
-type StopwatchState = {
-  isRunning: boolean;
-  elapsedTime: ElapsedTime;
-  laps: Lap[];
-};
-
-type StopwatchAction =
-    | { type: 'START_STOPWATCH' }
-    | { type: 'STOP_STOPWATCH' }
-    | { type: 'RESET_STOPWATCH' }
-    | { type: 'RECORD_LAP' }
-    | { type: 'INCREMENT_ELAPSED_TIME', interval: number }
-    ;
-
-// Initial state
-const initialState: StopwatchState = {
-  isRunning: false,
-  elapsedTime: 0,
-  laps: [],
-};
+import { formatTime } from "./utils.ts";
+import stopwatchReducer, { initialState } from "./reducer";
+import { DigitalTime } from "./components/DigitalTime";
+import { Laps } from "./components/Laps";
 
 const UPDATE_INTERVAL = 10 // The stopwatch UI update interval in milliseconds
-
-function stopwatchReducer(state: StopwatchState, action: StopwatchAction): StopwatchState {
-  return produce(state, draftState => {
-    switch (action.type) {
-      case 'START_STOPWATCH':
-        draftState.isRunning = true;
-        break;
-      case 'STOP_STOPWATCH':
-        draftState.isRunning = false;
-        break;
-      case 'INCREMENT_ELAPSED_TIME':
-        if (state.isRunning) {
-          draftState.elapsedTime = state.elapsedTime + action.interval;
-        }
-        break;
-      case 'RESET_STOPWATCH':
-        draftState.isRunning = initialState.isRunning;
-        draftState.elapsedTime = initialState.elapsedTime;
-        draftState.laps = initialState.laps;
-        break;
-      case 'RECORD_LAP':
-        if (state.isRunning) {
-          // Calculate the duration of the current lap. The duration is the difference between
-          // the total elapsed time so far and the sum of the durations of all previous laps.
-          const lapDuration = state.elapsedTime - sumNumbers(state.laps)
-
-          // Record the new lap
-          draftState.laps.push(lapDuration);
-        }
-        break;
-    }
-  });
-}
 
 function App() {
   const [state, dispatch] = useReducer(stopwatchReducer, initialState)
@@ -109,7 +56,7 @@ function App() {
 
   return (
       <div>
-        <div>Elapsed Time: {formatTime(state.elapsedTime)}</div>
+        <DigitalTime elapsedTime={state.elapsedTime} />
         <button onClick={startStopwatch} disabled={state.isRunning}>
           Start
         </button>
@@ -123,6 +70,8 @@ function App() {
           Lap
         </button>
         <h2>Laps</h2>
+        <Laps />
+
         {reversedLaps.map((lap, index) => (
             <li
                 key={`lap-${index}`}

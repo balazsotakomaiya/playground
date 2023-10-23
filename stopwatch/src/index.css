@@ -1,15 +1,22 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255);
-  background-color: black;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255);
+    background-color: black;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    --primary-color: #333333;
+    /*todo*/
+    --success-color: #2E7D32;
+    --success-color-secondary: #1B5E20;
+    --danger-color: #913931;
+    --danger-color-secondary: #320C0C;
 }

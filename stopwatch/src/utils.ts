@@ -15,6 +15,6 @@ export const formatTime = (time: number) => {
     const date = new Date(time);
     const minutes = date.getUTCMinutes().toString().padStart(2, '0');
     const seconds = date.getUTCSeconds().toString().padStart(2, '0');
-    const milliseconds = date.getUTCMilliseconds().toString().padStart(3, '0');
+    const milliseconds = Math.floor(date.getUTCMilliseconds() / 10).toString().padStart(2, '0');
     return `${minutes}:${seconds}.${milliseconds}`;
 };
