@@ -19,9 +19,10 @@ const Wrapper = styled.div`
   font-size: 4.5rem;
   font-weight: 300;
   width: 100%;
-  text-align: center;
-  display: grid;
-  place-items: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export default DigitalTime

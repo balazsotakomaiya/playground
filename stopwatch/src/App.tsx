@@ -103,6 +103,9 @@ const Wrapper = styled.div`
 const TimeAndControls = styled.div`
   height: 400px;
   border-bottom: 1px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
 `;
 
 const Controls = styled.div`
