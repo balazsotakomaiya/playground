@@ -83,6 +83,12 @@ function App() {
 
 const Wrapper = styled.div`
   padding: 20px;
+
+  // Narrow screen on desktop
+  @media (min-width: 768px) {
+    width: 550px;
+    margin: 0 auto;
+  }
 `;
 
 const TimeAndControls = styled.div`

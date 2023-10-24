@@ -56,7 +56,7 @@ const StyledRoundButton = styled.button<{
 
   &:active {
     background: ${props => {
-      switch (props.variant) {
+      switch (props.$variant) {
         case 'primary':
           return 'rgba(var(--color-gray), 0.8)';
         case 'danger':

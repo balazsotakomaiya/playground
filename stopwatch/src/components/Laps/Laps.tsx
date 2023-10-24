@@ -30,8 +30,8 @@ const Laps: React.FC<Props> = ({ laps }) => {
       {laps.map((lap, index) => (
         <LapItem
           key={`lap-${index}`}
-          $isBestLap={lap === bestLapTime}
-          $isWorstLap={lap === worstLapTime}
+          $isBestLap={index === 0 ? false : lap === bestLapTime} // Exclude current lap from best lap calculation
+          $isWorstLap={index === 0 ? false : lap === worstLapTime} // Exclude current lap from worst lap calculation
         >
           <LapNumber className="lap-number">
             Lap {laps.length - index}
