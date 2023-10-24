@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import stopwatchReducer, { initialState } from "./reducer";
 import { DigitalTime } from "./components/DigitalTime";
 import { Laps } from "./components/Laps";
@@ -10,16 +10,7 @@ const UPDATE_INTERVAL = 10; // The stopwatch UI update interval in milliseconds
 function App() {
   const [state, dispatch] = useReducer(stopwatchReducer, initialState);
 
-  const worstLapTime = useMemo(() => {
-    return state.laps.length > 0 ? Math.max(...state.laps) : null;
-  }, [state.laps]);
-
-  const bestLapTime = useMemo(() => {
-    return state.laps.length > 0 ? Math.min(...state.laps) : null;
-  }, [state.laps]);
-
   const reversedLaps = [...state.laps].reverse(); // Do not mutate React state directly
-
   const canReset = state.elapsedTime > 0 && !state.isRunning;
   const canLap = state.elapsedTime > 0;
 

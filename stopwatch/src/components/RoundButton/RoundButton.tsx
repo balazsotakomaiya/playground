@@ -16,14 +16,14 @@ const RoundButton: React.FC<Props> = (props) => {
     return (
         <StyledRoundButton
             {...rest}
-            variant={variant}
+            $variant={variant}
             disabled={disabled}
         />
     );
 }
 
 const StyledRoundButton = styled.button<{
-    variant: Props['variant'],
+    $variant: Props['variant'],
     disabled: Props['disabled']
 }>`
   height: 70px;
@@ -34,7 +34,7 @@ const StyledRoundButton = styled.button<{
   outline: none;
   opacity: ${props => props.disabled ? 0.8 : 1};
   background: ${props => {
-    switch (props.variant) {
+    switch (props.$variant) {
       case 'primary':
         return 'rgba(var(--color-gray))';
       case 'danger':
