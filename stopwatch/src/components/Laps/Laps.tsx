@@ -10,19 +10,14 @@ interface Props {
 const Laps: React.FC<Props> = ({ laps }) => {
   const lapsWithoutCurrent = laps.slice(1);
 
-  const worstLapTime = useMemo(() => {
+  const [bestLapTime, worstLapTime] = useMemo(() => {
     if (lapsWithoutCurrent.length > 1) {
-      // Ensure there are at least three laps (excluding current lap)
-      return Math.max(...lapsWithoutCurrent);
+      return [
+        Math.min(...lapsWithoutCurrent),
+        Math.max(...lapsWithoutCurrent)
+      ];
     }
-    return null; // Return null if there are less than three laps (excluding current lap)
-  }, [lapsWithoutCurrent]);
-
-  const bestLapTime = useMemo(() => {
-    if (lapsWithoutCurrent.length > 1) {
-      return Math.min(...lapsWithoutCurrent);
-    }
-    return null;
+    return [null, null];
   }, [lapsWithoutCurrent]);
 
   return (
@@ -45,9 +40,7 @@ const Laps: React.FC<Props> = ({ laps }) => {
 };
 
 const LapContainer = styled.ul`
-  background-color: black;
-  color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
