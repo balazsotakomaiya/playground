@@ -32,11 +32,12 @@ const Laps: React.FC<Props> = ({ laps }) => {
           key={`lap-${index}`}
           $isBestLap={index === 0 ? false : lap === bestLapTime} // Exclude current lap from best lap calculation
           $isWorstLap={index === 0 ? false : lap === worstLapTime} // Exclude current lap from worst lap calculation
+          aria-label={`Lap ${laps.length - index}, time: ${formatTime(lap)} ${
+            index !== 0 && lap === bestLapTime ? ", best lap" : ""
+          }${index !== 0 && lap === worstLapTime ? ", worst lap" : ""}`}
         >
-          <LapNumber className="lap-number">
-            Lap {laps.length - index}
-          </LapNumber>
-          <LapTime className="lap-time"> {formatTime(lap)}</LapTime>
+          <LapNumber>Lap {laps.length - index}</LapNumber>
+          <LapTime> {formatTime(lap)}</LapTime>
         </LapItem>
       ))}
     </LapContainer>
@@ -45,17 +46,18 @@ const Laps: React.FC<Props> = ({ laps }) => {
 
 // todo: overflow-y: scroll
 
-const LapContainer = styled.div`
+const LapContainer = styled.ul`
   background-color: black;
   color: white;
 `;
 
-const LapItem = styled.div<{
+const LapItem = styled.li<{
   $isBestLap?: boolean;
   $isWorstLap?: boolean;
 }>`
   border-bottom: 1px solid rgb(var(--color-gray));
   padding: 8px 0;
+  list-style: none;
 
   ${(props) =>
     props.$isBestLap &&
