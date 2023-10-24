@@ -32,7 +32,7 @@ const StyledRoundButton = styled.button<{
   border: none;
   font-size: 1rem;
   outline: none;
-  opacity: ${props => props.disabled ? 0.8 : 1};
+  opacity: ${props => props.disabled ? 0.5 : 1};
   background: ${props => {
     switch (props.$variant) {
       case 'primary':

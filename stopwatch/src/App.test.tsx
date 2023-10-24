@@ -102,6 +102,9 @@ describe('<App />', () => {
 
         // Assert that the time has been reset
         expect(timeElement.textContent).toBe("00:00.00");
+
+        // Assert that the current lap has been wiped
+        expect(screen.queryByRole('listitem', { name: /lap 1/i })).not.toBeInTheDocument();
     });
 
     test('that the stopwatch can CAPTURE LAP', async () => {
@@ -175,5 +178,55 @@ describe('<App />', () => {
 
         // Expect that the button does not exist
         expect(screen.queryByRole('button', { name: /stop/i })).not.toBeInTheDocument();
+    })
+
+    test('that the stopwatch cannot be RESET MULTIPLE TIMES', async () => {
+        // Start the stopwatch
+        await act(async () => {
+            fireEvent.click(startButton);
+            vi.advanceTimersToNextTimer();
+        });
+
+        // 1 second has passed
+        await act(async () => {
+            vi.advanceTimersByTime(1000);
+        });
+
+        const stopButton = screen.getByRole('button', { name: /stop/i })
+        expect(stopButton).toBeInTheDocument();
+
+        // stop the stopwatch
+        await act(async () => {
+            fireEvent.click(stopButton);
+        })
+
+        const resetButton = screen.getByRole('button', { name: /reset/i })
+        expect(resetButton).toBeInTheDocument();
+
+        // Reset the stopwatch
+        await act(async () => {
+            fireEvent.click(resetButton);
+            vi.advanceTimersToNextTimer();
+        })
+
+        // Assert that the time has been reset
+        expect(timeElement.textContent).toBe("00:00.00");
+
+        // Expect that the reset button does not exist
+        expect(screen.queryByRole('button', { name: /reset/i })).not.toBeInTheDocument();
+
+        const lapButton = screen.getByRole('button', { name: /lap/i })
+        expect(lapButton).toBeInTheDocument();
+
+        // Ensure that the lap button is disabled
+        expect(lapButton).toBeDisabled();
+
+        // Try clicking the lap button
+        await act(async () => {
+            fireEvent.click(lapButton);
+        })
+
+        // Assert that the lap has been wiped
+        expect(screen.queryByRole('listitem', { name: /lap 1/i })).not.toBeInTheDocument();
     })
 });
