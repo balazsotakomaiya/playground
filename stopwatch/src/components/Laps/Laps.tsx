@@ -44,11 +44,14 @@ const Laps: React.FC<Props> = ({ laps }) => {
   );
 };
 
-// todo: overflow-y: scroll
-
 const LapContainer = styled.ul`
   background-color: black;
   color: white;
+  overflow-y: scroll;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `;
 
 const LapItem = styled.li<{

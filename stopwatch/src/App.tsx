@@ -83,6 +83,9 @@ function App() {
 
 const Wrapper = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
   // Narrow screen on desktop
   @media (min-width: 768px) {
