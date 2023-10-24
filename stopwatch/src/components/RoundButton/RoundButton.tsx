@@ -44,7 +44,7 @@ const StyledRoundButton = styled.button<{
     }
   }};
   color: ${props => {
-    switch (props.variant) {
+    switch (props.$variant) {
       case 'primary':
         return 'white';
       case 'danger':
