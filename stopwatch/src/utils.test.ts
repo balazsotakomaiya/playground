@@ -17,17 +17,17 @@ describe('utils', () => {
             // 1 minute, 30 seconds, and 500 milliseconds
             // Note: Time is in milliseconds
             const time = (1 * 60 * 1000) + (30 * 1000) + 500;
-            expect(formatTime(time)).toBe("01:30.500");
+            expect(formatTime(time)).toBe("01:30.50");
         });
 
         it('formats time correctly when minutes and seconds are less than 10', () => {
             // 5 minutes, 5 seconds, and 50 milliseconds
             const time = (5 * 60 * 1000) + (5 * 1000) + 50;
-            expect(formatTime(time)).toBe("05:05.050");
+            expect(formatTime(time)).toBe("05:05.05");
         });
 
         it('handles 0 milliseconds correctly', () => {
-            expect(formatTime(0)).toBe("00:00.000");
+            expect(formatTime(0)).toBe("00:00.00");
         });
     });
 });

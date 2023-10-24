@@ -4,18 +4,18 @@ import { Milliseconds } from "../../types.ts";
 import styled from "styled-components";
 
 interface Props {
-    elapsedTime: Milliseconds
+  elapsedTime: Milliseconds;
 }
 
 const DigitalTime: React.FC<Props> = ({ elapsedTime }) => {
-    return (
-        <Wrapper>
-            {formatTime(elapsedTime)}
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper role="timer" aria-label="Elapsed time on stopwatch">
+      {formatTime(elapsedTime)}
+    </Wrapper>
+  );
+};
 
-const Wrapper = styled.div`
+const Wrapper = styled.time`
   font-size: 5rem;
   font-weight: 300;
   width: 100%;
@@ -23,6 +23,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
-export default DigitalTime
+export default DigitalTime;
