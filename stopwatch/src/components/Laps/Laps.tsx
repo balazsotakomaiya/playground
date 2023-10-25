@@ -31,7 +31,7 @@ const Laps: React.FC<Props> = ({ laps }) => {
             index !== 0 && lap === bestLapTime ? ", best lap" : ""
           }${index !== 0 && lap === worstLapTime ? ", worst lap" : ""}`}
         >
-          <LapNumber>Lap {laps.length - index}</LapNumber>
+          <span>Lap {laps.length - index}</span>
           <LapTime> {formatTime(lap)}</LapTime>
         </LapItem>
       ))}
@@ -54,21 +54,19 @@ const LapItem = styled.li<{
   border-bottom: 1px solid rgb(var(--color-gray));
   padding: 8px 0;
   list-style: none;
+  display: flex;
+  justify-content: space-between;
 
   ${(props) =>
-    props.$isBestLap &&
-    `
+      props.$isBestLap &&
+      `
     color: rgba(var(--color-green));
   `}
   ${(props) =>
-    props.$isWorstLap &&
-    `
+      props.$isWorstLap &&
+      `
     color: rgba(var(--color-red));
   `}
-`;
-
-const LapNumber = styled.span`
-  font-weight: bold;
 `;
 
 const LapTime = styled.span`
