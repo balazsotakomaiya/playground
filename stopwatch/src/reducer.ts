@@ -2,7 +2,10 @@ import { produce } from "immer";
 import { sumNumbers } from "./utils.ts";
 import { LapDuration, Milliseconds } from "./types.ts";
 
-export type DisplayMode = 'digital' | 'analog'
+export enum DisplayMode {
+    DIGITAL = 'digital',
+    ANALOG = 'analog',
+}
 
 export type StopwatchAction =
     | { type: 'START_STOPWATCH' }
@@ -10,6 +13,7 @@ export type StopwatchAction =
     | { type: 'RESET_STOPWATCH' }
     | { type: 'RECORD_LAP' }
     | { type: 'INCREMENT_ELAPSED_TIME', interval: number }
+    | { type: 'SET_DISPLAY_MODE', displayMode: DisplayMode }
     ;
 
 export type StopwatchState = {
@@ -24,7 +28,7 @@ export const initialState: StopwatchState = {
     isRunning: false,
     elapsedTime: 0,
     laps: [],
-    displayMode: 'digital',
+    displayMode: DisplayMode.DIGITAL,
 };
 
 const reducer = (state: StopwatchState, action: StopwatchAction): StopwatchState => {
@@ -64,6 +68,9 @@ const reducer = (state: StopwatchState, action: StopwatchAction): StopwatchState
                     // Record the new lap
                     draftState.laps.push(lapDuration);
                 }
+                break;
+            case 'SET_DISPLAY_MODE':
+                draftState.displayMode = action.displayMode;
                 break;
         }
     });

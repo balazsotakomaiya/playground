@@ -24,3 +24,4 @@ pnpm test
 ## Known issues
 
 1. There can technically be multiple "best" or "worst" laps, if multiple laps have the same time (10ms precision)
+2. No tests for "best" and "worst" laps logic

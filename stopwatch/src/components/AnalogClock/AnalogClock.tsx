@@ -7,7 +7,7 @@ interface Props {
   elapsedTime: Milliseconds;
 }
 
-const DigitalTime: React.FC<Props> = ({ elapsedTime }) => {
+const AnalogClock: React.FC<Props> = ({ elapsedTime }) => {
   return (
     <Wrapper role="timer" aria-label="Elapsed time on stopwatch">
       {formatTime(elapsedTime)}
@@ -25,4 +25,4 @@ const Wrapper = styled.time`
   justify-content: center;
 `;
 
-export default DigitalTime;
+export default AnalogClock;

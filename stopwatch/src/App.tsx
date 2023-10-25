@@ -1,9 +1,14 @@
 import { useEffect, useReducer } from "react";
 import stopwatchReducer, { initialState } from "./reducer";
-import { DigitalTime } from "./components/DigitalTime";
 import { Laps } from "./components/Laps";
 import styled from "styled-components";
 import { RoundButton } from "./components/RoundButton";
+import { Pagination } from "./components/Pagination";
+import {
+  ANALOG_CLOCK_INDEX,
+  ClockSlider,
+  DIGITAL_CLOCK_INDEX,
+} from "./components/ClockSlider";
 
 const UPDATE_INTERVAL = 10; // The stopwatch UI update interval in milliseconds
 
@@ -13,7 +18,6 @@ function App() {
   const reversedLaps = [...state.laps].reverse(); // Do not mutate React state directly
   const canReset = state.elapsedTime > 0 && !state.isRunning;
   const canLap = state.elapsedTime > 0;
-
   const startStopwatch = () => {
     dispatch({ type: "START_STOPWATCH" });
   };
@@ -52,7 +56,14 @@ function App() {
   return (
     <Wrapper>
       <TimeAndControls>
-        <DigitalTime elapsedTime={state.elapsedTime} />
+        <ClockSlider
+          elapsedTime={state.elapsedTime}
+          displayMode={state.displayMode}
+          onClockModeChange={(displayMode) => {
+            dispatch({ type: "SET_DISPLAY_MODE", displayMode });
+          }}
+        />
+
         <Controls>
           {canReset ? (
             <RoundButton onClick={resetStopwatch}>Reset</RoundButton>
@@ -62,7 +73,14 @@ function App() {
             </RoundButton>
           )}
 
-          {/*todo: slider controls*/}
+          <Pagination
+            numberOfDots={2}
+            activeDotIndex={
+              state.displayMode === "digital"
+                ? DIGITAL_CLOCK_INDEX
+                : ANALOG_CLOCK_INDEX
+            }
+          />
 
           {state.isRunning ? (
             <RoundButton variant="danger" onClick={stopStopwatch}>
@@ -105,6 +123,7 @@ const TimeAndControls = styled.div`
 const Controls = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export default App;
