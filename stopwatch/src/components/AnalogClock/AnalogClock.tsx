@@ -115,7 +115,7 @@ const Hand = styled.div.attrs<{ $degrees: number }>(props => ({
   style: {
     transform: `translateX(-50%) rotate(${props.$degrees}deg)`,
   },
-}))<{ width: string; height: string; color: string }>`
+}))<{ height: string; color: string }>`
   position: absolute;
   bottom: 50%;
   left: 50%;
