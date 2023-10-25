@@ -25,3 +25,5 @@ pnpm test
 
 1. There can technically be multiple "best" or "worst" laps, if multiple laps have the same time (10ms precision)
 2. No tests for "best" and "worst" laps logic
+3. The stopwatch only works when the tab is in focus. This could be resolved by using a Web Worker
+4. The analog clock of the stopwatch is still missing 1:1 design parity with Apple's Stopwatch app

@@ -1,1 +1,1 @@
-export { default as DigitalClock } from './AnalogClock.tsx';
+export { default as AnalogClock } from './AnalogClock.tsx';

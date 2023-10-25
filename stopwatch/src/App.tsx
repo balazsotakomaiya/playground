@@ -18,6 +18,7 @@ function App() {
   const reversedLaps = [...state.laps].reverse(); // Do not mutate React state directly
   const canReset = state.elapsedTime > 0 && !state.isRunning;
   const canLap = state.elapsedTime > 0;
+
   const startStopwatch = () => {
     dispatch({ type: "START_STOPWATCH" });
   };
@@ -59,6 +60,7 @@ function App() {
         <ClockSlider
           elapsedTime={state.elapsedTime}
           displayMode={state.displayMode}
+          currentLap={reversedLaps.length > 1 ? reversedLaps[0] : null}
           onClockModeChange={(displayMode) => {
             dispatch({ type: "SET_DISPLAY_MODE", displayMode });
           }}
