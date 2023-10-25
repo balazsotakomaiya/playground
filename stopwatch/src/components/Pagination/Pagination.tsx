@@ -9,7 +9,7 @@ interface Props {
 const Pagination: React.FC<Props> = ({ activeDotIndex, numberOfDots }) => (
     <DotsWrapper>
         {Array.from({ length: numberOfDots }).map((_, index) => (
-            <Dot key={index} isActive={activeDotIndex === index} />
+            <Dot key={index} $isActive={activeDotIndex === index} />
         ))}
     </DotsWrapper>
 );
@@ -19,11 +19,11 @@ const DotsWrapper = styled.div`
   gap: 5px;
 `;
 
-const Dot = styled.div<{ isActive: boolean }>`
+const Dot = styled.div<{ $isActive: boolean }>`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: ${props => props.isActive ? 'white' : 'rgba(var(--color-gray))'};
+  background-color: ${props => props.$isActive ? 'white' : 'rgba(var(--color-gray))'};
 `;
 
 export default Pagination;
