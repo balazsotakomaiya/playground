@@ -55,7 +55,7 @@ const AnalogClock: React.FC<Props> = ({ elapsedTime, currentLap }) => {
 
 const InnerDigitalClock = styled.time`
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   width: 100%;
   display: flex;
   align-items: center;
