@@ -5,7 +5,13 @@ An imitation of the iOS native Stopwatch app in React + TypeScript.
 | ![Analog](src%2Fscreenshots%2Fanalog.png) | ![Digital](src%2Fscreenshots%2Fdigital.png) |
 |---------------------------|----------------------------|
 
+## Features
 
+- Analog and digital clock
+- Start, stop, and reset
+- Lap times
+- Best and worst lap times
+- Responsive design (mobile & touch first)
 
 ## Requirements
 

@@ -11,19 +11,19 @@ interface Props {
 const MinuteHand: React.FC<{ minutes: number; seconds: number; milliseconds: number }> = ({ minutes, seconds, milliseconds }) => {
   const totalMinutes = minutes + seconds / 60 + milliseconds / 60000;
   const degrees = (totalMinutes / 60) * 360;
-  return <Hand $degrees={degrees} width="4px" height="36px" color="#f7a21a" />;
+  return <Hand $degrees={degrees} height="36px" color="#f7a21a" />;
 };
 
 const SecondHand: React.FC<{ seconds: number; milliseconds: number }> = ({ seconds, milliseconds }) => {
   const totalSeconds = seconds + milliseconds / 1000;
   const degrees = (totalSeconds / 60) * 360; // Convert the total seconds into a degree value.
-  return <Hand $degrees={degrees} width="2px" height="160px" color="#f7a21a" />;
+  return <Hand $degrees={degrees} height="160px" color="#f7a21a" />;
 };
 
 const LapHand: React.FC<{ seconds: number; milliseconds: number }> = ({ seconds, milliseconds }) => {
   const totalSeconds = seconds + milliseconds / 1000;
   const degrees = (totalSeconds / 60) * 360; // Convert the total seconds into a degree value.
-  return <Hand $degrees={degrees} width="2px" height="160px" color="#1788fd" />;
+  return <Hand $degrees={degrees} height="160px" color="#1788fd" />;
 };
 
 const AnalogClock: React.FC<Props> = ({ elapsedTime, currentLap }) => {
@@ -48,6 +48,8 @@ const AnalogClock: React.FC<Props> = ({ elapsedTime, currentLap }) => {
 
         <MinuteClock>
           <MinuteHand minutes={minutes} seconds={seconds} milliseconds={milliseconds} />
+
+          <CenterDot size='6px' />
         </MinuteClock>
       </Wrapper>
   );
@@ -64,10 +66,10 @@ const InnerDigitalClock = styled.time`
   margin-top: 128px;
 `;
 
-const CenterDot = styled.div`
+const CenterDot = styled.div<{ size?: string }>`
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: ${props => props.size || '8px'};
+  height: ${props => props.size || '8px'};
   background-color: #f7a21a;
   border-radius: 50%;
   top: 50%;
@@ -117,7 +119,7 @@ const Hand = styled.div.attrs<{ $degrees: number }>(props => ({
   position: absolute;
   bottom: 50%;
   left: 50%;
-  width: ${props => props.width};
+  width: 2px;
   height: ${props => props.height};
   background-color: ${props => props.color};
   transform-origin: bottom;
