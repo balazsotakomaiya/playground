@@ -2,6 +2,11 @@
 
 An imitation of the iOS native Stopwatch app in React + TypeScript.
 
+| ![Analog](src%2Fscreenshots%2Fanalog.png) | ![Digital](src%2Fscreenshots%2Fdigital.png) |
+|---------------------------|----------------------------|
+
+
+
 ## Requirements
 
 - Node.js 14+
