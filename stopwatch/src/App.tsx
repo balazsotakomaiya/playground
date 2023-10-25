@@ -63,7 +63,7 @@ function App() {
           elapsedTime={state.elapsedTime}
           displayMode={state.displayMode}
           currentLap={canShowAnalogLapHand ? currentLap : null}
-          onClockModeChange={(displayMode) => {
+          onDisplayModeChange={(displayMode) => {
             dispatch({ type: "SET_DISPLAY_MODE", displayMode });
           }}
         />

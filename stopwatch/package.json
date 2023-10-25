@@ -14,7 +14,6 @@
   "dependencies": {
     "immer": "^10.0.3",
     "react": "^18.2.0",
-    "react-clock": "^4.5.1",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.0",
     "swiper": "^11.0.1"

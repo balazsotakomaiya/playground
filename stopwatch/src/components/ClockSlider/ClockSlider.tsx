@@ -17,13 +17,13 @@ interface Props {
   elapsedTime: Milliseconds;
   currentLap: LapDuration | null;
   displayMode: DisplayMode;
-  onClockModeChange: (mode: DisplayMode) => void;
+  onDisplayModeChange: (mode: DisplayMode) => void;
 }
 
 const ClockSlider: React.FC<Props> = ({
   elapsedTime,
   displayMode,
-  onClockModeChange,
+  onDisplayModeChange,
   currentLap,
 }) => {
   const swiperRef = React.useRef<SwiperRef>(null);
@@ -34,7 +34,7 @@ const ClockSlider: React.FC<Props> = ({
       activeIndex === DIGITAL_CLOCK_INDEX
         ? DisplayMode.DIGITAL
         : DisplayMode.ANALOG;
-    onClockModeChange(newMode);
+    onDisplayModeChange(newMode);
   };
 
   // Update the clock mode when the display mode changes
@@ -56,10 +56,7 @@ const ClockSlider: React.FC<Props> = ({
           <DigitalClock elapsedTime={elapsedTime} />
         </SwiperSlide>
         <SwiperSlide>
-          <AnalogClock
-              elapsedTime={elapsedTime}
-              currentLap={currentLap}
-          />
+          <AnalogClock elapsedTime={elapsedTime} currentLap={currentLap} />
         </SwiperSlide>
       </Swiper>
     </Container>
