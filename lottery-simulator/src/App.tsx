@@ -6,6 +6,7 @@ import { WinningNumbers } from "./components/WinningNumbers";
 import { NumbersInput } from "./components/NumbersInput";
 import { Milliseconds } from "./types.ts";
 import { SpeedSlider } from "./components/SpeedSlider";
+import { generateUniqueSecureRandomNumbers } from "./utils.ts";
 
 const COST_PER_DRAW = 300;
 const MIN_SPEED: Milliseconds = 1;
@@ -19,7 +20,9 @@ function App() {
 
         if (state.isRunning) {
             interval = window.setInterval(() => {
-                dispatch({ type: "INCREMENT_DRAWS" });
+                const newNumbers = generateUniqueSecureRandomNumbers();
+
+                dispatch({ type: "PERFORM_DRAW", payload: newNumbers });
             }, state.speed);
         }
 

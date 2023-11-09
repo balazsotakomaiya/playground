@@ -16,8 +16,7 @@ export type State = {
 };
 
 export type Action =
-    | { type: 'INCREMENT_DRAWS' }
-    | { type: 'SET_WINNING_NUMBERS'; payload: LotteryNumber[] }
+    | { type: 'PERFORM_DRAW'; payload: LotteryNumber[] }
     | { type: 'SET_USER_NUMBERS'; payload: LotteryNumber[] }
     | { type: 'SET_SPEED'; payload: number }
     | { type: 'START_DRAW' }
@@ -43,11 +42,9 @@ export const initialState: State = {
 
 export const reducer = produce((draft: State, action: Action) => {
     switch (action.type) {
-        case 'INCREMENT_DRAWS':
-            draft.numberOfDraws += 1;
-            break;
-        case 'SET_WINNING_NUMBERS':
+        case 'PERFORM_DRAW':
             draft.winningNumbers = action.payload;
+            draft.numberOfDraws += 1;
             break;
         case 'SET_USER_NUMBERS':
             draft.userNumbers = action.payload;
