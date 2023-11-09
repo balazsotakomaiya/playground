@@ -8,6 +8,7 @@ import { LotteryNumber, Milliseconds, OptionalLotteryNumber } from "./types.ts";
 import { SpeedSlider } from "./components/SpeedSlider";
 import { generateUniqueSecureRandomNumbers } from "./utils.ts";
 import styled from "styled-components";
+import { Button } from "./components/Button";
 
 const COST_PER_DRAW = 300;
 const MIN_SPEED: Milliseconds = 1;
@@ -97,37 +98,39 @@ function App() {
                     }}
                 />
 
-                {state.isRunning ? (
-                    <button
-                        onClick={() => {
-                            dispatch({ type: 'STOP_DRAW' })
-                        }}
-                    >
-                        Pause Drawing
-                    </button>
-                ) : (
-                    <button
-                        onClick={() => {
-                            const validationError = validateNumbers(state.userNumbers);
-                            if (!validationError) {
-                                dispatch({ type: 'CLEAR_ERROR' });
-                                dispatch({ type: 'START_DRAW' });
-                            } else {
-                                dispatch({ type: 'ERROR', payload: validationError });
-                            }
-                        }}
-                    >
-                        Start Drawing
-                    </button>
-                )}
+                <Buttons>
+                    {state.isRunning ? (
+                        <Button
+                            onClick={() => {
+                                dispatch({ type: 'STOP_DRAW' })
+                            }}
+                        >
+                            Pause Drawing
+                        </Button>
+                    ) : (
+                        <Button
+                            onClick={() => {
+                                const validationError = validateNumbers(state.userNumbers);
+                                if (!validationError) {
+                                    dispatch({ type: 'CLEAR_ERROR' });
+                                    dispatch({ type: 'START_DRAW' });
+                                } else {
+                                    dispatch({ type: 'ERROR', payload: validationError });
+                                }
+                            }}
+                        >
+                            Start Drawing
+                        </Button>
+                    )}
 
-                <button
-                    onClick={() => {
-                        dispatch({ type: 'RESET' });
-                    }}
-                >
-                    Reset
-                </button>
+                    <Button
+                        onClick={() => {
+                            dispatch({ type: 'RESET' });
+                        }}
+                    >
+                        Reset
+                    </Button>
+                </Buttons>
 
                 {state.errorMessage && <p>{state.errorMessage}</p>}
             </Card>
@@ -165,6 +168,12 @@ const Card = styled.div`
 const Title = styled.h1`
   margin-top: 0;
   margin-bottom: 32px;
+`
+
+const Buttons = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
 `
 
 export default App

@@ -44,7 +44,7 @@ const Card = styled.div`
   padding: 24px 32px;
   border-radius: 16px;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   gap: 16px;
   margin-bottom: 32px;

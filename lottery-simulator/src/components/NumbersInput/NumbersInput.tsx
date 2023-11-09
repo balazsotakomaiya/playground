@@ -1,6 +1,7 @@
 import React from "react";
 import { OptionalLotteryNumber } from "../../types.ts";
 import { generateUniqueSecureRandomNumbers } from "../../utils.ts";
+import { Button } from "../Button";
 
 interface Props {
     value: OptionalLotteryNumber[];
@@ -55,9 +56,9 @@ const NumbersInput: React.FC<Props> = ({ value, onChange, isDisabled }) => {
 
             {inputs}
 
-            <button onClick={handleRandomNumbers} disabled={isDisabled}>
+            <Button onClick={handleRandomNumbers} disabled={isDisabled}>
                 Generate Random Numbers
-            </button>
+            </Button>
         </div>
     );
 }
