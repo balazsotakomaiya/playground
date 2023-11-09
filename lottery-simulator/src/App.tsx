@@ -134,7 +134,7 @@ function App() {
                     </Button>
                 </Buttons>
 
-                {state.errorMessage && <p>{state.errorMessage}</p>}
+                {state.errorMessage && <Error>{state.errorMessage}</Error>}
             </Card>
         </Wrapper>
     );
@@ -176,6 +176,14 @@ const Buttons = styled.div`
   display: flex;
   gap: 16px;
   margin-top: 32px;
+`
+
+const Error = styled.p`
+  background: #f5b971;
+  color: white;
+  font-weight: 600;
+  padding: 16px;
+  border-radius: 8px;
 `
 
 export default App
