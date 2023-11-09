@@ -17,7 +17,7 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The interface provides input fields for entering up to five numbers.
+- [x] The interface provides input fields for entering up to five numbers.
 - [ ] The system validates the numbers to ensure they are within the 1 to 90 range.
 - [ ] The system ensures no duplicate numbers are entered for a single draw.
 
@@ -33,9 +33,9 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The application provides an option to generate a random set of five numbers.
-- [ ] The generated numbers are within the 1 to 90 range.
-- [ ] No duplicate numbers are generated for a single draw.
+- [x] The application provides an option to generate a random set of five numbers.
+- [x] The generated numbers are within the 1 to 90 range.
+- [x] No duplicate numbers are generated for a single draw.
 
 ---
 
@@ -49,9 +49,9 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The application includes a slider for adjusting the draw speed.
-- [ ] The slider has a range from 1 second to 1 millisecond.
-- [ ] Changes to the slider immediately affect the speed of the draws.
+- [x] The application includes a slider for adjusting the draw speed.
+- [x] The slider has a range from 1 second to 1 millisecond.
+- [x] Changes to the slider immediately affect the speed of the draws.
 
 ---
 
@@ -65,9 +65,9 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The application allows for a continuous draw of numbers without manual intervention.
-- [ ] There is a clear option to start the continuous draw.
-- [ ] There is a clear option to stop the continuous draw.
+- [x] The application allows for a continuous draw of numbers without manual intervention.
+- [x] There is a clear option to start the continuous draw.
+- [x] There is a clear option to stop the continuous draw.
 
 ---
 
@@ -81,8 +81,8 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The application displays the numbers as they are drawn.
-- [ ] The display updates in real-time for each draw.
+- [x] The application displays the numbers as they are drawn.
+- [x] The display updates in real-time for each draw.
 
 ---
 
@@ -96,8 +96,8 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The application provides a statistics section.
-- [ ] The statistics update in real-time with each draw.
+- [x] The application provides a statistics section.
+- [x] The statistics update in real-time with each draw.
 
 ---
 
@@ -111,9 +111,9 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The application calculates the total spend based on the number of draws.
-- [ ] The price per ticket is set at 300 HUF (Hungarian Forint).
-- [ ] The total spend is displayed and updated with each draw.
+- [x] The application calculates the total spend based on the number of draws.
+- [x] The price per ticket is set at 300 HUF (Hungarian Forint).
+- [x] The total spend is displayed and updated with each draw.
 
 ---
 
@@ -127,23 +127,23 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The interface displays the total years spent playing, based on one draw per week.
-- [ ] The years spent playing statistic is updated with each draw.
-- [ ] The years spent playing statistic continues to update when the simulation is paused or resumed.
+- [x] The interface displays the total years spent playing, based on one draw per week.
+- [x] The years spent playing statistic is updated with each draw.
+- [x] The years spent playing statistic continues to update when the simulation is paused or resumed.
 
 ### User Story 9
 
 **Title:** Real-time Display of Match Statistics
 
 **As a** user,  
-**I want** to see a real-time count of how many 2, 3, and 4 number matches I've had,  
+**I want** to see a real-time count of how many 2, 3, and 4, and 5 number matches I've had,  
 **so that** I can track the performance of my numbers without explicit notifications.  
 
 #### Acceptance Criteria:
 
-- [ ] The application displays a real-time count of 2, 3, and 4 number matches.
-- [ ] These statistics update immediately as each draw is completed.
-- [ ] The display is clear and easy to read during the simulation.
+- [x] The application displays a real-time count of 2, 3, 4, and 5 number matches.
+- [x] These statistics update immediately as each draw is completed.
+- [x] The display is clear and easy to read during the simulation.
 
 ---
 
