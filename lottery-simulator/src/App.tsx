@@ -173,7 +173,7 @@ const Title = styled.h1`
 const Buttons = styled.div`
   display: flex;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 32px;
 `
 
 export default App

@@ -18,8 +18,7 @@ const StyledButton = styled.button<Props>`
   border: 0;
   cursor: pointer;
   border-radius: 8px;
-  
-
+  width: auto;
 `
 
 Button.displayName = 'Button';

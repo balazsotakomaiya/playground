@@ -2,6 +2,7 @@ import React from "react";
 import { OptionalLotteryNumber } from "../../types.ts";
 import { generateUniqueSecureRandomNumbers } from "../../utils.ts";
 import { Button } from "../Button";
+import styled from "styled-components";
 
 interface Props {
     value: OptionalLotteryNumber[];
@@ -39,7 +40,7 @@ const NumbersInput: React.FC<Props> = ({ value, onChange, isDisabled }) => {
     };
 
     const inputs = [...Array(5)].map((_, index) => (
-        <input
+        <NumberInput
             key={index}
             type="number"
             min="1"
@@ -51,16 +52,68 @@ const NumbersInput: React.FC<Props> = ({ value, onChange, isDisabled }) => {
     ));
 
     return (
-        <div>
-            <h2>Your numbers</h2>
+        <Wrapper>
+            <TitleAndNumbers>
+                <Title>Your numbers</Title>
 
-            {inputs}
+                <Numbers>
+                    {inputs}
+                </Numbers>
+            </TitleAndNumbers>
 
             <Button onClick={handleRandomNumbers} disabled={isDisabled}>
                 Generate Random Numbers
             </Button>
-        </div>
+        </Wrapper>
     );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+  gap: 16px;
+  align-items: flex-start;
+`
+
+const TitleAndNumbers = styled.div`
+  display: flex;
+  gap: 32px;
+  align-items: center;
+`
+
+const Title = styled.h3`
+  margin-top: 0;
+  margin-bottom: 0;
+`
+
+const Numbers = styled.div`
+  display: flex;
+  gap: 16px;
+`
+
+const NumberInput = styled.input`
+  text-align: center;
+  border: 2px solid #a5d9c8;
+  color: #363636;
+  background: transparent;
+  font-weight: 600;
+  font-size: 18px;
+  width: 42px;
+  height: 50px;
+  border-radius: 4px;
+
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+`
 
 export default NumbersInput

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Milliseconds } from "../../types.ts";
+import styled from "styled-components";
 
 interface Props {
     minSpeed: Milliseconds;
@@ -14,7 +15,7 @@ const SpeedSlider: React.FC<Props> = ({ minSpeed, maxSpeed, value, onChange }) =
     };
 
     return (
-        <div>
+        <Wrapper>
             <label htmlFor="speed-slider">Draw Speed: {value}ms</label>
             <input
                 id="speed-slider"
@@ -24,8 +25,13 @@ const SpeedSlider: React.FC<Props> = ({ minSpeed, maxSpeed, value, onChange }) =
                 value={value}
                 onChange={handleChange}
             />
-        </div>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  margin-top: 32px;
+`
 
 export default SpeedSlider;
