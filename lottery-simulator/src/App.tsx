@@ -114,6 +114,14 @@ function App() {
                 </button>
             )}
 
+            <button
+                onClick={() => {
+                    dispatch({ type: 'RESET' });
+                }}
+            >
+                Reset
+            </button>
+
             {state.errorMessage && <p>{state.errorMessage}</p>}
         </div>
     );

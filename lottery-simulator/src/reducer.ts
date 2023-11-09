@@ -41,6 +41,7 @@ export type Action =
     | { type: 'CHECK_FOR_MATCHES' }
     | { type: 'ERROR'; payload: string }
     | { type: 'CLEAR_ERROR' }
+    | { type: 'RESET' };
 
 export const initialState: State = {
     numberOfDraws: 0,
@@ -104,5 +105,7 @@ export const reducer = produce((draft: State, action: Action) => {
         case 'CLEAR_ERROR':
             draft.errorMessage = '';
             break;
+        case 'RESET':
+            return initialState;
     }
 });
