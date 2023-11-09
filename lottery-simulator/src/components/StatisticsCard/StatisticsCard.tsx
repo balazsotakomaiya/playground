@@ -3,9 +3,10 @@ import React from "react";
 interface Props {
     numberOfDraws: number
     costPerDraw: number
+    hasFullDraw: boolean
 }
 
-const StatisticsCard: React.FC<Props> = ({ numberOfDraws, costPerDraw }) => {
+const StatisticsCard: React.FC<Props> = ({ numberOfDraws, costPerDraw, hasFullDraw }) => {
     // Memoize the years calculation
     const yearsSpent = React.useMemo(() => {
         return numberOfDraws / 52; // Assuming there are 52 draws in a year
@@ -24,7 +25,11 @@ const StatisticsCard: React.FC<Props> = ({ numberOfDraws, costPerDraw }) => {
         <div>
             <h2>Statistics</h2>
             <p>Number of tickets: {numberOfDraws}</p>
-            <p>Years spent: {formattedYearsSpent}</p>
+            { hasFullDraw ? (
+                <b>Years spent: {formattedYearsSpent}</b>
+            ) : (
+                <p>Years spent: {formattedYearsSpent}</p>
+            ) }
             <p>Total cost: {formattedTotalCost} Ft</p>
         </div>
     );

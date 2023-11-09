@@ -5,6 +5,12 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 - How long would you have to play to win?
 - How much money would you spend?
 
+## Areas of improvement
+
+- [ ] Add tests
+- [x] Add a "reset" button
+- [ ] "Continue" instead of "Start" when the simulation is paused
+
 ## User Stories
 
 ### User Story 1
@@ -157,9 +163,8 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 
 #### Acceptance Criteria:
 
-- [ ] The application pauses when the user matches all 5 numbers.
-- [ ] A distinct visual or textual indication is provided for a full match.
-- [ ] The time spent playing up until the full match is prominently displayed.
+- [x] The application pauses when the user matches all 5 numbers.
+- [x] The time spent playing up until the full match is prominently displayed.
 
 
 

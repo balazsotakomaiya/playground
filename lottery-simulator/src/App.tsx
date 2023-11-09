@@ -31,6 +31,7 @@ const validateNumbers = (numbers: OptionalLotteryNumber[]) => {
 
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const hasFullDraw = state.matchCounts.five > 0;
 
     useEffect(() => {
         let interval: number | undefined;
@@ -52,18 +53,19 @@ function App() {
     }, [state.isRunning, state.speed]);
 
     useEffect(() => {
-        if (state.matchCounts.three > 0) {
+        if (hasFullDraw) {
             dispatch({ type: 'STOP_DRAW' });
 
             // todo: show UI, change to 5
         }
-    }, [state.matchCounts.three, dispatch]);
+    }, [hasFullDraw, dispatch]);
 
     return (
         <div>
             <StatisticsCard
                 numberOfDraws={state.numberOfDraws}
                 costPerDraw={COST_PER_DRAW}
+                hasFullDraw={hasFullDraw}
             />
 
             <MatchesCard
