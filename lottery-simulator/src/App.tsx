@@ -104,6 +104,7 @@ function App() {
                             onClick={() => {
                                 dispatch({ type: 'STOP_DRAW' })
                             }}
+                            variant='warning'
                         >
                             Pause Drawing
                         </Button>
@@ -127,6 +128,7 @@ function App() {
                         onClick={() => {
                             dispatch({ type: 'RESET' });
                         }}
+                        variant='secondary'
                     >
                         Reset
                     </Button>

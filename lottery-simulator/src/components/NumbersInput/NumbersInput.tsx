@@ -94,13 +94,13 @@ const Numbers = styled.div`
 
 const NumberInput = styled.input`
   text-align: center;
-  border: 2px solid #a5d9c8;
+  border: 1px solid #a5d9c8;
   color: #363636;
   background: transparent;
   font-weight: 600;
   font-size: 18px;
-  width: 42px;
-  height: 50px;
+  width: 44px;
+  height: 52px;
   border-radius: 4px;
 
   /* Chrome, Safari, Edge, Opera */

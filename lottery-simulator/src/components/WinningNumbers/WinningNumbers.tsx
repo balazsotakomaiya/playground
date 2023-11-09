@@ -12,8 +12,9 @@ const WinningNumbers: React.FC<Props> = ({ winningNumbers }) => {
             <Title>Winning numbers</Title>
 
             <Numbers>
-                {winningNumbers.map((number) => (
-                    <Number key={number}>
+                {winningNumbers.map((number, index) => (
+                    // Not great practice, but perf is not a concern here
+                    <Number key={index}>
                         {number}
                     </Number>
                 ))}

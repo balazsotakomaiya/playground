@@ -11,6 +11,9 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 - [x] Add a "reset" button
 - [ ] "Continue" instead of "Start" when the simulation is paused
 - [ ] Styling could be improved: Theme file, low-level components, etc.
+- [ ] Accessibility review
+- [ ] Use an unstyled, accessible slider component
+- [ ] Context-aware error messages, next to relevant input field
 
 ## User Stories
 
