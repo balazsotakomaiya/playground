@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 interface Props {
     matchCounts: {
@@ -11,32 +12,64 @@ interface Props {
 
 const MatchesCard: React.FC<Props> = ({ matchCounts }) => {
     return (
-        <div>
-            <div>
-                <h3>2 matches</h3>
+        <Card>
+            <Match>
+                <MatchTitle>2 matches</MatchTitle>
 
-                {matchCounts.two}
-            </div>
+                <MatchValue>{matchCounts.two}</MatchValue>
+            </Match>
 
-            <div>
-                <h3>3 matches</h3>
+            <Match>
+                <MatchTitle>3 matches</MatchTitle>
 
-                {matchCounts.three}
-            </div>
+                <MatchValue>{matchCounts.three}</MatchValue>
+            </Match>
 
-            <div>
-                <h3>4 matches</h3>
+            <Match>
+                <MatchTitle>4 matches</MatchTitle>
 
-                {matchCounts.four}
-            </div>
+                <MatchValue>{matchCounts.four}</MatchValue>
+            </Match>
 
-            <div>
-                <h3>5 matches</h3>
+            <Match>
+                <MatchTitle>5 matches</MatchTitle>
 
-                {matchCounts.five}
-            </div>
-        </div>
+                <MatchValue>{matchCounts.five}</MatchValue>
+            </Match>
+        </Card>
     );
 }
+
+const Card = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid lightgray;
+  border-radius: 16px;
+  border-collapse: collapse;
+
+  & > * + * {
+    border-left: 1px solid lightgray;
+    border-right-width: 0;
+  }
+`
+
+const Match = styled.div`
+  padding: 32px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+`
+
+const MatchTitle = styled.h3`
+  margin: 0;
+  font-weight: 400;
+`
+
+const MatchValue = styled.span`
+  font-size: 24px;
+  font-weight: 600;
+`
 
 export default MatchesCard
