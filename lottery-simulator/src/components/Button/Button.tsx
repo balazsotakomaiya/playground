@@ -13,11 +13,13 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(({ children, ...props 
     );
 });
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<Props>`
   padding: 12px 16px;
   border: 0;
   cursor: pointer;
   border-radius: 8px;
+  
+
 `
 
 Button.displayName = 'Button';

@@ -54,7 +54,7 @@ const Card = styled.div`
 `
 
 const Match = styled.div`
-  padding: 32px 16px;
+  padding: 24px 16px;
   text-align: center;
   display: flex;
   flex-direction: column;
