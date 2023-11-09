@@ -1,10 +1,10 @@
 import React from "react";
-import { LotteryNumber } from "../../types.ts";
+import { OptionalLotteryNumber } from "../../types.ts";
 import { generateUniqueSecureRandomNumbers } from "../../utils.ts";
 
 interface Props {
-    value: LotteryNumber[];
-    onChange: (newNumbers: LotteryNumber[]) => void;
+    value: OptionalLotteryNumber[];
+    onChange: (newNumbers: OptionalLotteryNumber[]) => void;
     isDisabled?: boolean;
 }
 

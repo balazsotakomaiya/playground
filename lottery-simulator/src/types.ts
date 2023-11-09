@@ -1,3 +1,4 @@
 export type Milliseconds = number; // Generic type for milliseconds
-export type LotteryNumber = number | null;
+export type OptionalLotteryNumber = number | null;
+export type LotteryNumber = number;
 

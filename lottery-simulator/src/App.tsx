@@ -23,6 +23,7 @@ function App() {
                 const newNumbers = generateUniqueSecureRandomNumbers();
 
                 dispatch({ type: "PERFORM_DRAW", payload: newNumbers });
+                dispatch({ type: "CHECK_FOR_MATCHES" })
             }, state.speed);
         }
 

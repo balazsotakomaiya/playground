@@ -1,8 +1,8 @@
 import React from "react";
-import { LotteryNumber } from "../../types.ts";
+import { OptionalLotteryNumber } from "../../types.ts";
 
 interface Props {
-    winningNumbers: LotteryNumber[]
+    winningNumbers: OptionalLotteryNumber[]
 }
 
 const WinningNumbers: React.FC<Props> = ({ winningNumbers }) => {

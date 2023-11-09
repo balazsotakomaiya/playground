@@ -27,3 +27,8 @@ export function generateUniqueSecureRandomNumbers(): number[] {
     }
     return Array.from(uniqueNumbers);
 }
+
+// Utility function to count the number of matches between two arrays
+export function countMatches(userNumbers: number[], winningNumbers: number[]) {
+    return userNumbers.filter(number => winningNumbers.includes(number)).length;
+}
