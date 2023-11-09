@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import { initialState, reducer } from "./reducer.ts";
 import { StatisticsCard } from "./components/StatisticsCard";
 import { MatchesCard } from "./components/MatchesCard";
@@ -13,6 +13,22 @@ const MAX_SPEED: Milliseconds = 1000;
 
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
+
+    useEffect(() => {
+        let interval: number | undefined;
+
+        if (state.isRunning) {
+            interval = window.setInterval(() => {
+                dispatch({ type: "INCREMENT_DRAWS" });
+            }, state.speed);
+        }
+
+        return () => {
+            if (interval) {
+                clearInterval(interval);
+            }
+        };
+    }, [state.isRunning, state.speed]);
 
     return (
         <div>
@@ -44,6 +60,24 @@ function App() {
                     dispatch({ type: 'SET_SPEED', payload: newSpeed })
                 }}
             />
+
+            {state.isRunning ? (
+                <button
+                    onClick={() => {
+                        dispatch({ type: 'STOP_DRAW' })
+                    }}
+                >
+                    Pause Drawing
+                </button>
+            ) : (
+                <button
+                    onClick={() => {
+                        dispatch({ type: 'START_DRAW' })
+                    }}
+                >
+                    Start Drawing
+                </button>
+            )}
         </div>
     );
 }
