@@ -26,8 +26,15 @@ const WinningNumbers: React.FC<Props> = ({ winningNumbers }) => {
 const Wrapper = styled.div`
   display: flex;
   margin-top: 32px;
-  align-items: center;
-  gap: 32px;
+  align-items: start;
+  gap: 16px;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    gap: 32px;
+    flex-direction: row;
+    align-items: center;
+  }
 `
 
 const Title = styled.h3`
@@ -36,8 +43,8 @@ const Title = styled.h3`
 `
 
 const Numbers = styled.div`
-    display: flex;
-    gap: 16px;
+  display: flex;
+  gap: 16px;
 `
 
 const Number = styled.div`
@@ -48,7 +55,7 @@ const Number = styled.div`
   color: white;
   font-weight: 600;
   font-size: 18px;
-  width: 48px;
+  width: 50px;
   height: 56px;
   border-radius: 4px;
 `

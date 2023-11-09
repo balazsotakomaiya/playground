@@ -42,14 +42,18 @@ const MatchesCard: React.FC<Props> = ({ matchCounts }) => {
 
 const Card = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   border: 1px solid lightgray;
   border-radius: 16px;
   border-collapse: collapse;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
-  & > * + * {
-    border-left: 1px solid lightgray;
-    border-right-width: 0;
+    & > * + * {
+      border-left: 1px solid lightgray;
+      border-right-width: 0;
+    }
   }
 `
 

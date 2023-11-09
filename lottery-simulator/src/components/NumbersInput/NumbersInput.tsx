@@ -70,16 +70,23 @@ const NumbersInput: React.FC<Props> = ({ value, onChange, isDisabled }) => {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
   margin-top: 32px;
   gap: 16px;
   align-items: flex-start;
+  flex-direction: column;
 `
 
 const TitleAndNumbers = styled.div`
   display: flex;
-  gap: 32px;
-  align-items: center;
+  gap: 16px;
+  align-items: start;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    gap: 32px;
+    align-items: center;
+    flex-direction: row;
+  }
 `
 
 const Title = styled.h3`
