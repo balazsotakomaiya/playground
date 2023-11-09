@@ -11,6 +11,7 @@ export type BaseState = {
         four: number;
         five: number;
     };
+    errorMessage: string;
 }
 
 export type RunningState = BaseState & {
@@ -37,13 +38,15 @@ export type Action =
     | { type: 'SET_SPEED'; payload: Milliseconds }
     | { type: 'START_DRAW' }
     | { type: 'STOP_DRAW' }
-    | { type: 'CHECK_FOR_MATCHES' };
+    | { type: 'CHECK_FOR_MATCHES' }
+    | { type: 'ERROR'; payload: string }
+    | { type: 'CLEAR_ERROR' }
 
 export const initialState: State = {
     numberOfDraws: 0,
     winningNumbers: [null, null, null, null, null],
     userNumbers: [null, null, null, null, null],
-    speed: 1000, // Default speed is set to 1 second
+    speed: 500, // Default speed is set to 1 second
     matchCounts: {
         two: 0,
         three: 0,
@@ -51,6 +54,7 @@ export const initialState: State = {
         five: 0,
     },
     isRunning: false,
+    errorMessage: '',
 };
 
 export const reducer = produce((draft: State, action: Action) => {
@@ -93,6 +97,12 @@ export const reducer = produce((draft: State, action: Action) => {
             break;
         case 'STOP_DRAW':
             draft.isRunning = false;
+            break;
+        case 'ERROR':
+            draft.errorMessage = action.payload;
+            break;
+        case 'CLEAR_ERROR':
+            draft.errorMessage = '';
             break;
     }
 });

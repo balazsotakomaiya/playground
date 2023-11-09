@@ -1,4 +1,6 @@
 // Utility function that generates a random number between min and max using Crypto API
+import { LotteryNumber } from "./types.ts";
+
 export function generateSecureRandomNumber(min: number, max: number): number {
     const range = max - min + 1;
     const bitsNeeded = Math.ceil(Math.log2(range));
@@ -29,6 +31,6 @@ export function generateUniqueSecureRandomNumbers(): number[] {
 }
 
 // Utility function to count the number of matches between two arrays
-export function countMatches(userNumbers: number[], winningNumbers: number[]) {
+export function countMatches(userNumbers: LotteryNumber[], winningNumbers: LotteryNumber[]) {
     return userNumbers.filter(number => winningNumbers.includes(number)).length;
 }

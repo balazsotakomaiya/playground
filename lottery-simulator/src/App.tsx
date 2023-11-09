@@ -4,13 +4,30 @@ import { StatisticsCard } from "./components/StatisticsCard";
 import { MatchesCard } from "./components/MatchesCard";
 import { WinningNumbers } from "./components/WinningNumbers";
 import { NumbersInput } from "./components/NumbersInput";
-import { Milliseconds } from "./types.ts";
+import { LotteryNumber, Milliseconds, OptionalLotteryNumber } from "./types.ts";
 import { SpeedSlider } from "./components/SpeedSlider";
 import { generateUniqueSecureRandomNumbers } from "./utils.ts";
 
 const COST_PER_DRAW = 300;
 const MIN_SPEED: Milliseconds = 1;
 const MAX_SPEED: Milliseconds = 1000;
+
+const validateNumbers = (numbers: OptionalLotteryNumber[]) => {
+    if (numbers.some(number => number === null)) {
+        return 'All number inputs must be filled out.';
+    }
+
+    const numberSet = new Set(numbers);
+    if (numberSet.size !== numbers.length) {
+        return 'Numbers must be unique. Duplicate numbers found.';
+    }
+
+    if ((numbers as LotteryNumber[]).some((number) => number < 1 || number > 90)) {
+        return 'Numbers must be between 1 and 90. Out of range number found.';
+    }
+
+    return null; // No errors found
+};
 
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -33,6 +50,14 @@ function App() {
             }
         };
     }, [state.isRunning, state.speed]);
+
+    useEffect(() => {
+        if (state.matchCounts.three > 0) {
+            dispatch({ type: 'STOP_DRAW' });
+
+            // todo: show UI, change to 5
+        }
+    }, [state.matchCounts.three, dispatch]);
 
     return (
         <div>
@@ -76,12 +101,20 @@ function App() {
             ) : (
                 <button
                     onClick={() => {
-                        dispatch({ type: 'START_DRAW' })
+                        const validationError = validateNumbers(state.userNumbers);
+                        if (!validationError) {
+                            dispatch({ type: 'CLEAR_ERROR' });
+                            dispatch({ type: 'START_DRAW' });
+                        } else {
+                            dispatch({ type: 'ERROR', payload: validationError });
+                        }
                     }}
                 >
                     Start Drawing
                 </button>
             )}
+
+            {state.errorMessage && <p>{state.errorMessage}</p>}
         </div>
     );
 }

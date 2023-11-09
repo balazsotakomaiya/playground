@@ -18,8 +18,8 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 #### Acceptance Criteria:
 
 - [x] The interface provides input fields for entering up to five numbers.
-- [ ] The system validates the numbers to ensure they are within the 1 to 90 range.
-- [ ] The system ensures no duplicate numbers are entered for a single draw.
+- [x] The system validates the numbers to ensure they are within the 1 to 90 range.
+- [x] The system ensures no duplicate numbers are entered for a single draw.
 
 ---
 
