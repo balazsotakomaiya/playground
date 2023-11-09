@@ -15,6 +15,14 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 - [ ] Use an unstyled, accessible slider component
 - [ ] Context-aware error messages, next to relevant input field
 
+## Running the app
+
+```
+pnpm install
+pnpm build
+pnpm preview
+```
+
 ## User Stories
 
 ### User Story 1
