@@ -10,6 +10,7 @@ Statistically speaking, you won't win the lottery. But what if you could simulat
 - [ ] Add tests
 - [x] Add a "reset" button
 - [ ] "Continue" instead of "Start" when the simulation is paused
+- [ ] Styling could be improved: Theme file, low-level components, etc.
 
 ## User Stories
 

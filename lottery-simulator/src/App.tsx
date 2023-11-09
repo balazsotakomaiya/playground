@@ -7,6 +7,7 @@ import { NumbersInput } from "./components/NumbersInput";
 import { LotteryNumber, Milliseconds, OptionalLotteryNumber } from "./types.ts";
 import { SpeedSlider } from "./components/SpeedSlider";
 import { generateUniqueSecureRandomNumbers } from "./utils.ts";
+import styled from "styled-components";
 
 const COST_PER_DRAW = 300;
 const MIN_SPEED: Milliseconds = 1;
@@ -52,81 +53,118 @@ function App() {
         };
     }, [state.isRunning, state.speed]);
 
+    // Stop the draw if the user has a full draw
     useEffect(() => {
         if (hasFullDraw) {
             dispatch({ type: 'STOP_DRAW' });
-
-            // todo: show UI, change to 5
         }
     }, [hasFullDraw, dispatch]);
 
     return (
-        <div>
-            <StatisticsCard
-                numberOfDraws={state.numberOfDraws}
-                costPerDraw={COST_PER_DRAW}
-                hasFullDraw={hasFullDraw}
-            />
+        <Wrapper>
+            <Card>
+                <Title>
+                    Lottery Simulator
+                </Title>
 
-            <MatchesCard
-                matchCounts={state.matchCounts}
-            />
+                <StatisticsCard
+                    numberOfDraws={state.numberOfDraws}
+                    costPerDraw={COST_PER_DRAW}
+                    hasFullDraw={hasFullDraw}
+                />
 
-            <WinningNumbers
-                winningNumbers={state.winningNumbers}
-            />
+                <MatchesCard
+                    matchCounts={state.matchCounts}
+                />
 
-            <NumbersInput
-                onChange={(newNumbers) => {
-                    dispatch({ type: 'SET_USER_NUMBERS', payload: newNumbers })
-                }}
-                value={state.userNumbers}
-            />
+                <WinningNumbers
+                    winningNumbers={state.winningNumbers}
+                />
 
-            <SpeedSlider
-                minSpeed={MIN_SPEED}
-                maxSpeed={MAX_SPEED}
-                value={state.speed}
-                onChange={(newSpeed) => {
-                    dispatch({ type: 'SET_SPEED', payload: newSpeed })
-                }}
-            />
+                <NumbersInput
+                    onChange={(newNumbers) => {
+                        dispatch({ type: 'SET_USER_NUMBERS', payload: newNumbers })
+                    }}
+                    value={state.userNumbers}
+                />
 
-            {state.isRunning ? (
+                <SpeedSlider
+                    minSpeed={MIN_SPEED}
+                    maxSpeed={MAX_SPEED}
+                    value={state.speed}
+                    onChange={(newSpeed) => {
+                        dispatch({ type: 'SET_SPEED', payload: newSpeed })
+                    }}
+                />
+
+                {state.isRunning ? (
+                    <button
+                        onClick={() => {
+                            dispatch({ type: 'STOP_DRAW' })
+                        }}
+                    >
+                        Pause Drawing
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => {
+                            const validationError = validateNumbers(state.userNumbers);
+                            if (!validationError) {
+                                dispatch({ type: 'CLEAR_ERROR' });
+                                dispatch({ type: 'START_DRAW' });
+                            } else {
+                                dispatch({ type: 'ERROR', payload: validationError });
+                            }
+                        }}
+                    >
+                        Start Drawing
+                    </button>
+                )}
+
                 <button
                     onClick={() => {
-                        dispatch({ type: 'STOP_DRAW' })
+                        dispatch({ type: 'RESET' });
                     }}
                 >
-                    Pause Drawing
+                    Reset
                 </button>
-            ) : (
-                <button
-                    onClick={() => {
-                        const validationError = validateNumbers(state.userNumbers);
-                        if (!validationError) {
-                            dispatch({ type: 'CLEAR_ERROR' });
-                            dispatch({ type: 'START_DRAW' });
-                        } else {
-                            dispatch({ type: 'ERROR', payload: validationError });
-                        }
-                    }}
-                >
-                    Start Drawing
-                </button>
-            )}
 
-            <button
-                onClick={() => {
-                    dispatch({ type: 'RESET' });
-                }}
-            >
-                Reset
-            </button>
-
-            {state.errorMessage && <p>{state.errorMessage}</p>}
-        </div>
+                {state.errorMessage && <p>{state.errorMessage}</p>}
+            </Card>
+        </Wrapper>
     );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+
+  @media (min-width: 768px) {
+    padding: 32px;
+  }
+`
+
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  border: 1px solid lightgray;
+  border-radius: 16px;
+  padding: 48px;
+  width: 100%;
+  box-sizing: border-box;
+  
+  @media (min-width: 768px) {
+    margin: 0 auto;
+    width: 800px;
+  }
+`
+
+const Title = styled.h1`
+  margin-top: 0;
+  margin-bottom: 32px;
+`
 
 export default App

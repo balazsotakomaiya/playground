@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+import { formatNumber } from "../../utils.ts";
 
 interface Props {
     numberOfDraws: number
@@ -9,7 +11,7 @@ interface Props {
 const StatisticsCard: React.FC<Props> = ({ numberOfDraws, costPerDraw, hasFullDraw }) => {
     // Memoize the years calculation
     const yearsSpent = React.useMemo(() => {
-        return numberOfDraws / 52; // Assuming there are 52 draws in a year
+        return Math.floor(numberOfDraws / 52); // Assuming there are 52 draws in a year and rounding down to the nearest whole number
     }, [numberOfDraws]);
 
     // Memoize the cost calculation
@@ -17,13 +19,12 @@ const StatisticsCard: React.FC<Props> = ({ numberOfDraws, costPerDraw, hasFullDr
         return numberOfDraws * costPerDraw;
     }, [numberOfDraws, costPerDraw]);
 
-    // Format numbers to a fixed decimal place for display
-    const formattedYearsSpent = yearsSpent.toFixed(0);
-    const formattedTotalCost = totalCost.toFixed(0);
+    // Format numbers for display
+    const formattedYearsSpent = formatNumber(yearsSpent);
+    const formattedTotalCost = formatNumber(totalCost);
 
     return (
-        <div>
-            <h2>Statistics</h2>
+        <Card>
             <p>Number of tickets: {numberOfDraws}</p>
             { hasFullDraw ? (
                 <b>Years spent: {formattedYearsSpent}</b>
@@ -31,8 +32,25 @@ const StatisticsCard: React.FC<Props> = ({ numberOfDraws, costPerDraw, hasFullDr
                 <p>Years spent: {formattedYearsSpent}</p>
             ) }
             <p>Total cost: {formattedTotalCost} Ft</p>
-        </div>
+        </Card>
     );
-}
+};
+
+
+const Card = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  background: #a5d9c8;
+  padding: 24px 32px;
+  border-radius: 16px;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  gap: 16px;
+
+  p {
+    margin: 0;
+  }
+`
 
 export default StatisticsCard
