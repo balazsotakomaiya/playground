@@ -24,7 +24,7 @@ function Input({ onSubmit }) {
           onChange={handleChange}
           id="guess-input"
           type="text"
-          minLength={5}
+          minLength={5} /// Doesn't work properly
           maxLength={5}
         />
       </form>
