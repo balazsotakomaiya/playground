@@ -20,13 +20,13 @@ function Guess({ word, answer }) {
 
   return (
     <p className="guess">
-      {letters.map((letter) => {
+      {letters.map((letter, index) => {
         const status = result.find(
           (resultLetter) => resultLetter.letter === letter
         ).status;
 
         return (
-          <span key={letter} className={`cell ${status}`}>
+          <span key={`${letter}-${index}`} className={`cell ${status}`}>
             {letter}
           </span>
         );
