@@ -15,7 +15,7 @@ function Game() {
 
   return (
     <div>
-      <Guesses guesses={guesses} />
+      <Guesses guesses={guesses} answer={answer} />
       <Input onSubmit={(guess) => setGuesses([...guesses, guess])} />
     </div>
   );
