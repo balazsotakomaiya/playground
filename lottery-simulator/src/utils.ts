@@ -21,11 +21,11 @@ export function generateSecureRandomNumber(min: number, max: number): number {
     return (randomNumber % range) + min;
 }
 
-// Function to generate an array of 5 unique random numbers using the utility function
+// Function to generate an array of 6 unique random numbers using the utility function
 export function generateUniqueSecureRandomNumbers(): number[] {
     const uniqueNumbers = new Set<number>();
-    while (uniqueNumbers.size < 5) {
-        uniqueNumbers.add(generateSecureRandomNumber(1, 90));
+    while (uniqueNumbers.size < 6) {
+        uniqueNumbers.add(generateSecureRandomNumber(1, 45));
     }
     return Array.from(uniqueNumbers);
 }

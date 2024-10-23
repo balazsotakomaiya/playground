@@ -24,8 +24,8 @@ const validateNumbers = (numbers: OptionalLotteryNumber[]) => {
         return 'Numbers must be unique. Duplicate numbers found.';
     }
 
-    if ((numbers as LotteryNumber[]).some((number) => number < 1 || number > 90)) {
-        return 'Numbers must be between 1 and 90. Out of range number found.';
+    if ((numbers as LotteryNumber[]).some((number) => number < 1 || number > 45)) {
+        return 'Numbers must be between 1 and 45. Out of range number found.';
     }
 
     return null; // No errors found

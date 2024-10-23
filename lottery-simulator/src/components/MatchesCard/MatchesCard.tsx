@@ -7,6 +7,7 @@ interface Props {
         three: number;
         four: number;
         five: number;
+        six: number;
     }
 }
 
@@ -36,6 +37,12 @@ const MatchesCard: React.FC<Props> = ({ matchCounts }) => {
 
                 <MatchValue>{matchCounts.five}</MatchValue>
             </Match>
+
+            <Match>
+                <MatchTitle>6 matches</MatchTitle>
+
+                <MatchValue>{matchCounts.five}</MatchValue>
+            </Match>
         </Card>
     );
 }
@@ -48,7 +55,7 @@ const Card = styled.div`
   border-collapse: collapse;
   
   @media (min-width: 768px) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 
     & > * + * {
       border-left: 1px solid lightgray;

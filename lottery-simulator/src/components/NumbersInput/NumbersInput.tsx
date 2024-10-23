@@ -39,12 +39,12 @@ const NumbersInput: React.FC<Props> = ({ value, onChange, isDisabled }) => {
         onChange(newNumbers);
     };
 
-    const inputs = [...Array(5)].map((_, index) => (
+    const inputs = [...Array(6)].map((_, index) => (
         <NumberInput
             key={index}
             type="number"
             min="1"
-            max="90"
+            max="45"
             value={value[index] || ''}
             onChange={handleInputChange(index)}
             disabled={isDisabled}

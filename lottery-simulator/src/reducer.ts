@@ -10,6 +10,7 @@ export type BaseState = {
         three: number;
         four: number;
         five: number;
+        six: number;
     };
     errorMessage: string;
 }
@@ -45,14 +46,15 @@ export type Action =
 
 export const initialState: State = {
     numberOfDraws: 0,
-    winningNumbers: [null, null, null, null, null],
-    userNumbers: [null, null, null, null, null],
+    winningNumbers: [null, null, null, null, null, null],
+    userNumbers: [null, null, null, null, null, null],
     speed: 500, // Default speed is set to 1 second
     matchCounts: {
         two: 0,
         three: 0,
         four: 0,
         five: 0,
+        six: 0,
     },
     isRunning: false,
     errorMessage: '',
@@ -81,6 +83,9 @@ export const reducer = produce((draft: State, action: Action) => {
                     break;
                 case 5:
                     draft.matchCounts.five += 1;
+                    break;
+                case 6:
+                    draft.matchCounts.six += 1;
                     break;
                 default:
                     // No action needed for fewer than 2 matches
