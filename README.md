@@ -4,6 +4,12 @@ This is a place for me to play around with new technologies and ideas.
 
 ## Projects
 
+## 🔗 Doubly Linked List
+
+[View the source code](doubly-linked-list/)
+
+A generic doubly linked list implementation in TypeScript with O(1) insertion/deletion at head and tail.
+
 ## ⏱️ Stopwatch
 
 [View the source code](stopwatch/)
