@@ -5,17 +5,27 @@
 #ifndef CSV_PARSER_CSVPARSER_H
 #define CSV_PARSER_CSVPARSER_H
 #include <string>
+#include <vector>
 
 class LoadedCSV {
 public:
+    explicit LoadedCSV(std::vector<std::vector<std::string>> newData);
     void display();
+
+private:
+    std::vector<std::vector<std::string>> data;
 };
 
 class CSVParser {
 public:
     CSVParser();
 
-    LoadedCSV* parse(std::string path);
+    LoadedCSV parse(const std::string& path);
+
+private:
+    // Splits a CSV string into a vector of strings. Supports single quotes.
+    // O(n) time complexity, O(1) space complexity
+    static std::vector<std::string> splitLine(const std::string &line);
 };
 
 #endif //CSV_PARSER_CSVPARSER_H
