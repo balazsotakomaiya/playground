@@ -33,7 +33,7 @@ This is a **learning project**, not production code. It does not handle:
 ## Usage
 
 ```cpp
-CSVParser parser("data.csv");
-parser.parse();
-parser.display();
+CSVParser parser;
+auto parsedCSV = parser.parse("data.csv");
+parsedCSV.display();
 ```
