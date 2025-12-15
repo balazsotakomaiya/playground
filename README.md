@@ -39,6 +39,7 @@ A generic doubly linked list implementation in TypeScript with O(1) insertion/de
 ## 🍀 Lottery Simulator
 
 Tech stack: React, TypeScript, Vite, styled-components
+
 [Check out the demo](https://playground-phi-six.vercel.app)  
 [View the source code](lottery-simulator/)
 
