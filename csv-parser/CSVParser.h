@@ -10,7 +10,7 @@
 class LoadedCSV {
 public:
     explicit LoadedCSV(std::vector<std::vector<std::string>> newData);
-    void display();
+    void display() const;
 
 private:
     std::vector<std::vector<std::string>> data;
@@ -20,7 +20,7 @@ class CSVParser {
 public:
     CSVParser();
 
-    LoadedCSV parse(const std::string& path);
+    static LoadedCSV parse(const std::string& path);
 
 private:
     // Splits a CSV string into a vector of strings. Supports single quotes.

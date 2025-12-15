@@ -8,14 +8,12 @@
 
 int main(int argc, char *argv[]) {
     try {
-        CSVParser csv_parser;
+        const auto parsedFile = CSVParser::parse("../data/customers.csv");
 
-        auto parsedFile = csv_parser.parse("../data/customers.csv");
+        parsedFile.display();
     } catch (std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
     return 0;
-    //
-    // parsedFile.display();
 }

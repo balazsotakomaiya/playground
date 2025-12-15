@@ -13,9 +13,17 @@ LoadedCSV::LoadedCSV(std::vector<std::vector<std::string>> newData) {
     data = std::move(newData);
 }
 
-void LoadedCSV::display() {
+void LoadedCSV::display() const {
+    for (const auto& row : data) {
+        for (const auto& cell : row) {
+            std::cout << cell << ", ";
+        }
 
+        std::cout << std::endl;
+    }
 }
+
+CSVParser::CSVParser() = default;
 
 LoadedCSV CSVParser::parse(const std::string &path) {
     std::ifstream rawCSV(path);
@@ -47,7 +55,7 @@ std::vector<std::string> CSVParser::splitLine(const std::string &line) {
     std::string currentString;
     bool isInsideQuotes = false;
 
-    for (char c : line) {
+    for (const char c : line) {
         if (c == '"') {
             isInsideQuotes = !isInsideQuotes;
             continue;
