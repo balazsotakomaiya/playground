@@ -11,6 +11,9 @@ class LoadedCSV {
 public:
     explicit LoadedCSV(std::vector<std::vector<std::string>> newData);
     void display() const;
+    size_t getRowCount() const;
+    size_t getColumnCount() const;
+    const std::vector<std::string>& getRow(size_t index) const;
 
 private:
     std::vector<std::vector<std::string>> data;
@@ -18,8 +21,6 @@ private:
 
 class CSVParser {
 public:
-    CSVParser();
-
     static LoadedCSV parse(const std::string& path);
 
 private:
