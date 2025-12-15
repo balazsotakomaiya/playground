@@ -4,14 +4,6 @@ This is a place for me to play around with new technologies and ideas.
 
 ## Projects
 
-## 🔗 Doubly Linked List
-
-Tech stack: TypeScript
-
-[View the source code](doubly-linked-list/)
-
-A generic doubly linked list implementation in TypeScript with O(1) insertion/deletion at head and tail.
-
 ## ⏱️ Stopwatch
 
 Tech stack: React, TypeScript
@@ -19,6 +11,30 @@ Tech stack: React, TypeScript
 [View the source code](stopwatch/)
 
 An imitation of the iOS native Stopwatch app in React + TypeScript.
+
+## 🧾 CSV Parser
+
+Tech stack: C++17, STL, CMake
+
+[View the source code](csv-parser/)
+
+A minimal CSV parser implementation in C++ for learning core language features.
+
+## 📦 Custom Vector
+
+Tech stack: C++17, STL, CMake
+
+[View the source code](custom-vector/)
+
+A minimal dynamic array (vector) implementation in C++ for learning memory management and foundational data structures.
+
+## 🔗 Doubly Linked List
+
+Tech stack: TypeScript
+
+[View the source code](doubly-linked-list/)
+
+A generic doubly linked list implementation in TypeScript with O(1) insertion/deletion at head and tail.
 
 ## 🍀 Lottery Simulator
 
@@ -42,11 +58,3 @@ Tech stack: React, TypeScript
 [View the source code](stock-level/)
 
 A simple app to track stock levels.
-
-## 🧾 CSV Parser
-
-Tech stack: C++17, STL, CMake
-
-[View the source code](csv-parser/)
-
-A minimal CSV parser implementation in C++ for learning core language features.
