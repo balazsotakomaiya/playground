@@ -26,6 +26,12 @@ public:
         m_size++;
     }
 
+    T pop_back() {
+        T result = data[m_size - 1];
+        m_size--;
+        return result;
+    }
+
 private:
     T *data;
     size_t m_size;

@@ -20,6 +20,27 @@ TEST(MyVectorTest, PushBackIncreasesSize) {
     EXPECT_EQ(vec.size(), 2);
 }
 
+TEST(MyVectorTest, PopDecreasesSize) {
+    MyVector<int> vec;
+
+    vec.push_back(10);
+
+    EXPECT_EQ(vec.size(), 1);
+
+    vec.pop_back();
+
+    EXPECT_EQ(vec.size(), 0);
+}
+
+TEST(MyVectorTest, PopReturnsDeletedElement) {
+    MyVector<int> vec;
+
+    vec.push_back(10);
+    const auto result = vec.pop_back();
+
+    EXPECT_EQ(result, 10);
+}
+
 // TEST(MyVectorTest, GrowthTriggersAtCapacity) {
 //     MyVector<int> vec;
 //     // Push 5 elements (initial capacity is 4)
