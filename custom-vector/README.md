@@ -14,67 +14,30 @@ A minimal dynamic array implementation in C++ for learning memory management and
 ## Learning Goals
 
 ### Memory Management
-
 - Understand stack vs heap allocation
 - Manual memory allocation and deallocation
 - Preventing memory leaks through RAII
 - Deep copy vs shallow copy
 
 ### C++ Language Features
-
 - Template classes (generic programming)
 - The Rule of 5 (copy constructor, copy assignment, move constructor, move assignment, destructor)
 - Move semantics and performance optimization
 - Operator overloading (`[]`, `=`)
 
 ### Performance Concepts
-
 - Amortized time complexity
 - Capacity over-allocation strategy
 - Reallocation cost and growth factor trade-offs
 
-## Limitations
-
-This is a **learning project**, not production code. It does not implement:
-
-- Iterators (`begin()`, `end()`)
-- `insert`/`erase` at arbitrary positions
-- Custom allocators
-- `reserve`, `shrink_to_fit`, `emplace_back`
-- Full exception safety guarantees
-- Small buffer optimization
-- Complete STL compatibility
-
 ## Project Structure
-
 ```
 custom-vector/
 ├── README.md
+├── CMakeLists.txt  // Build configuration with Google Test
 ├── MyVector.h      // Template implementation (all in header)
 ├── tests.cpp       // Test cases
 └── main.cpp        // Usage examples
-```
-
-## Usage
-
-```cpp
-#include "MyVector.h"
-
-// Create vector of integers
-MyVector<int> numbers;
-numbers.push_back(10);
-numbers.push_back(20);
-numbers.push_back(30);
-
-// Access elements
-std::cout << numbers[0] << std::endl;  // 10
-std::cout << numbers.size() << std::endl;  // 3
-
-// Copy semantics
-MyVector<int> copy = numbers;  // Deep copy
-
-// Move semantics
-MyVector<int> moved = std::move(numbers);  // Transfer ownership
 ```
 
 ## Time Complexity
@@ -90,19 +53,21 @@ MyVector<int> moved = std::move(numbers);  // Transfer ownership
 ## Design Decisions
 
 **Growth Factor: 2x**
-
-- Industry standard (used by many `std::vector` implementations)
-- Balances memory overhead vs reallocation frequency
+- Industry standard, balances memory overhead vs reallocation frequency
 - Achieves amortized O(1) for push_back
 
 **Why Templates Live in Headers**
-
 - C++ templates require full definition at compile-time
 - Compiler generates code for each instantiation (`MyVector<int>`, `MyVector<string>`, etc.)
-- Cannot split into .h/.cpp like regular classes
 
 **The Rule of 5**
-
 - Necessary when managing raw pointers/resources
 - Default compiler-generated versions would cause double-free bugs
-- Modern C++ best practice for resource-owning classes
+
+## Learning Log
+- C++ uses "m_" prefix for member variables or trailing underscore like "size_"
+- No standard package manager (like npm)—CMake FetchContent is common for small projects
+- CLion's code indexer works separately from build system—"Reload CMake Project" syncs them
+- Template code must live in headers (compiler needs full definition at instantiation)
+- `delete[]` immediately frees memory—accessing it after is undefined behavior
+- Google Test is industry standard, integrates with CLion via CMake FetchContent
