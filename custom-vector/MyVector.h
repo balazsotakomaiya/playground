@@ -50,6 +50,21 @@ public:
         return data[index];
     }
 
+    MyVector &operator=(const MyVector &otherVector) {
+        if (&otherVector == this) {
+            return *this;
+        }
+
+        delete[] data;
+        data = new T[otherVector.m_capacity];
+
+        m_size = otherVector.m_size;
+        m_capacity = otherVector.m_capacity;
+        std::copy(otherVector.data, otherVector.data + otherVector.m_size, data);
+
+        return *this;
+    }
+
 private:
     T *data;
     size_t m_size;

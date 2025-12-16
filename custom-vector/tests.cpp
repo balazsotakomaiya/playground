@@ -62,6 +62,28 @@ TEST(MyVectorTest, CopyIsDeep) {
     EXPECT_EQ(vec2.size(), 2);
 }
 
+TEST(MyVectorTest, CopyAssignment) {
+    MyVector<int> vec1;
+    vec1.push_back(10);
+
+    MyVector<int> vec2;
+    vec2.push_back(99);
+
+    vec2 = vec1;  // Should deep copy
+
+    EXPECT_EQ(vec2[0], 10);
+    EXPECT_EQ(vec2.size(), 1);
+}
+
+TEST(MyVectorTest, SelfAssignment) {
+    MyVector<int> vec;
+    vec.push_back(10);
+
+    vec = vec;  // Should not crash
+
+    EXPECT_EQ(vec[0], 10);
+}
+
 // TEST(MyVectorTest, GrowthTriggersAtCapacity) {
 //     MyVector<int> vec;
 //     // Push 5 elements (initial capacity is 4)
