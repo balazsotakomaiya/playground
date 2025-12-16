@@ -21,6 +21,13 @@ public:
         std::copy(otherVector.data, otherVector.data + otherVector.m_size, data);
     }
 
+    MyVector(MyVector &&otherVector) {
+        m_size = otherVector.m_size;
+        m_capacity = otherVector.m_capacity;
+        data = otherVector.data;
+        otherVector.data = nullptr; // Prevent other destructor from delete[]-ing my data
+    }
+
     ~MyVector() {
         delete[] data;
     }
@@ -43,6 +50,10 @@ public:
     }
 
     T &operator[](size_t index) {
+        if (index >= m_size) {
+            throw std::out_of_range("Index out of bounds");
+        }
+
         return data[index];
     }
 
@@ -61,6 +72,21 @@ public:
         m_size = otherVector.m_size;
         m_capacity = otherVector.m_capacity;
         std::copy(otherVector.data, otherVector.data + otherVector.m_size, data);
+
+        return *this;
+    }
+
+    MyVector &operator=(MyVector &&otherVector) {
+        if (&otherVector == this) {
+            return *this;
+        }
+
+        delete[] data;
+        m_size = otherVector.m_size;
+        m_capacity = otherVector.m_capacity;
+        data = otherVector.data;
+
+        otherVector.data = nullptr;
 
         return *this;
     }

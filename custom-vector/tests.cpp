@@ -84,14 +84,38 @@ TEST(MyVectorTest, SelfAssignment) {
     EXPECT_EQ(vec[0], 10);
 }
 
-// TEST(MyVectorTest, GrowthTriggersAtCapacity) {
-//     MyVector<int> vec;
-//     // Push 5 elements (initial capacity is 4)
-//     for (int i = 0; i < 5; ++i) {
-//         vec.push_back(i);
-//     }
-//     // Verify all elements are intact after growth
-//     for (int i = 0; i < 5; ++i) {
-//         EXPECT_EQ(vec[i], i);
-//     }
-// }
+TEST(MyVectorTest, MoveConstructor) {
+    MyVector<int> vec1;
+    vec1.push_back(10);
+    vec1.push_back(20);
+
+    MyVector<int> vec2 = std::move(vec1);
+
+    EXPECT_EQ(vec2.size(), 2);
+    EXPECT_EQ(vec2[0], 10);
+    EXPECT_EQ(vec2[1], 20);
+}
+
+TEST(MyVectorTest, MoveAssignment) {
+    MyVector<int> vec1;
+    vec1.push_back(10);
+
+    MyVector<int> vec2;
+    vec2.push_back(99);
+
+    vec2 = std::move(vec1);  // Move assignment
+
+    EXPECT_EQ(vec2.size(), 1);
+    EXPECT_EQ(vec2[0], 10);
+}
+
+TEST(MyVectorTest, GrowthTriggersAtCapacity) {
+    MyVector<int> vec;
+    for (int i = 0; i < 5; ++i) {
+        vec.push_back(i);
+    }
+
+    for (int i = 0; i < 5; ++i) {
+        EXPECT_EQ(vec[i], i);
+    }
+}
