@@ -15,6 +15,12 @@ public:
         : data(new T[INITIAL_CAPACITY]), m_size(0), m_capacity(INITIAL_CAPACITY) {
     }
 
+    MyVector(const MyVector &otherVector) : data(new T[otherVector.m_capacity]) {
+        m_size = otherVector.m_size;
+        m_capacity = otherVector.m_capacity;
+        std::copy(otherVector.data, otherVector.data + otherVector.m_size, data);
+    }
+
     ~MyVector() {
         delete[] data;
     }
@@ -36,11 +42,11 @@ public:
         return result;
     }
 
-    T& operator[](size_t index) {
+    T &operator[](size_t index) {
         return data[index];
     }
 
-    const T& operator[](size_t index) const {
+    const T &operator[](size_t index) const {
         return data[index];
     }
 
@@ -66,7 +72,7 @@ private:
         }
 
         m_capacity = m_capacity * GROWTH_MULTIPLIER;
-        T* newData = new T[m_capacity];
+        T *newData = new T[m_capacity];
         std::copy(data, data + m_size, newData);
         delete[] data;
         data = newData;

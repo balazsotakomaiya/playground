@@ -51,16 +51,16 @@ TEST(MyVectorTest, BracketOperator) {
     EXPECT_EQ(vec[1], 30);
 }
 
-// TEST(MyVectorTest, CopyIsDeep) {
-//     MyVector<int> vec1;
-//     vec1.push_back(10);
-//
-//     MyVector<int> vec2 = vec1;
-//     vec2.push_back(20);  // Modify copy
-//
-//     EXPECT_EQ(vec1.size(), 1);  // Original unchanged?
-//     EXPECT_EQ(vec2.size(), 2);
-// }
+TEST(MyVectorTest, CopyIsDeep) {
+    MyVector<int> vec1;
+    vec1.push_back(10);
+
+    MyVector<int> vec2 = vec1;
+    vec2.push_back(20);  // Modify copy
+
+    EXPECT_EQ(vec1.size(), 1);  // Original unchanged
+    EXPECT_EQ(vec2.size(), 2);
+}
 
 // TEST(MyVectorTest, GrowthTriggersAtCapacity) {
 //     MyVector<int> vec;

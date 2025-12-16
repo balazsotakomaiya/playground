@@ -71,3 +71,4 @@ custom-vector/
 - Template code must live in headers (compiler needs full definition at instantiation)
 - `delete[]` immediately frees memory—accessing it after is undefined behavior
 - Google Test is industry standard, integrates with CLion via CMake FetchContent
+- Interesting: CPP shallow copies objects by default. My destructor tried to destroy it's original version's own pointer's memory allocation
