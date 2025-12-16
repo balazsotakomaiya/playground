@@ -15,7 +15,11 @@ public:
         : data(new T[INITIAL_CAPACITY]), m_size(0), m_capacity(INITIAL_CAPACITY) {
     }
 
-    size_t size() {
+    ~MyVector() {
+        delete[] data;
+    }
+
+    size_t size() const {
         return this->m_size;
     }
 
